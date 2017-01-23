@@ -33,7 +33,7 @@ class Player extends GameObject {
 
     for (int i = gameObjects.size() -1; i >= 0; i --) {
       GameObject go = gameObjects.get(i); 
-      if (go.id == 0){
+      if (go.id == 0) {
         this.gHeight = go.gHeight;
         this.gWidth = go.gWidth;
       }
@@ -51,6 +51,24 @@ class Player extends GameObject {
     stroke(0);
     ellipse(0, 0, size, size);
     popMatrix(); // Restore the transform
+    info();
+  }
+
+  void info() {
+    text("X: " + pos.x + "     Y: " + pos.y, 5, 12);
+    text("Vertical: " + velocity.y, 5, 32);
+    text("Horizontl: " + velocity.x, 5, 52);
+    if (checkKey(left))
+      text("Left: true", 5, 72);
+    else text("Left: false", 5, 72);
+    if (checkKey(right))
+      text("Right: true", 5, 92);
+    else text("Right:  false", 5, 92);
+
+    if (checkKey(up))
+      text("Jump: true", 5, 112);
+    else text("Jump:  false", 5, 112);
+    text("Time delta: " + timeDelta, 5, 132);
   }
 
   void update() {
@@ -77,7 +95,7 @@ class Player extends GameObject {
       velocity.y += gravity;
     } else { 
       velocity.y = 0;
-      pos.y = height - gHeight - size/2;      
+      pos.y = height - gHeight - size/2;
     }
   }
 

@@ -25,6 +25,9 @@ void init() {
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[1000];
 float timeDelta = 1.0f / 60.0f;
+float shoot;
+int numBullets = 10;
+float startingTheta = PI; 
 
 void draw(){
   background(0);  
@@ -33,6 +36,13 @@ void draw(){
     GameObject go = gameObjects.get(i); 
     go.update();
     go.render();
+  }
+  
+  shoot += timeDelta;
+  if (shoot  >= 1) {
+      Bullet b = new Bullet(width/2, height * 0.1f, startingTheta, 9, 8); 
+      gameObjects.add(b);
+    shoot = 0;
   }
 }
 
