@@ -26,7 +26,7 @@ ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[1000];
 float timeDelta = 1.0f / 60.0f;
 float shoot;
-int numBullets = 10;
+int numBullets = 100;
 float startingTheta = PI; 
 
 void draw(){
@@ -75,6 +75,22 @@ boolean groundCollision(PVector pos, float size) {
     if (go.id == 0)
       if (pos.y + size/2 >= go.pos.y && pos.y + size/2 <= go.pos.y + go.gHeight && pos.x > go.pos.x && pos.x < go.pos.x + go.gWidth)
         return true;
+  }
+  return false;
+}
+
+//Checks distance from the center of each object
+//If the current object being fetched is a bullet
+//And it is within the radius of the object which called the function(player)
+//remove the bullet game object and return true to the caller
+boolean bulletCollision(PVector pos, float size) {
+  for (int i = gameObjects.size() -1; i >= 0; i --) {
+    GameObject go = gameObjects.get(i); 
+    if (go.id == 3)
+      if (dist(pos.x, pos.y, go.pos.x, go.pos.y) <= size/2) {
+        gameObjects.remove(go);
+        return true;
+      }
   }
   return false;
 }
