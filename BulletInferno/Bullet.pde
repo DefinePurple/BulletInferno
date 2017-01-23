@@ -6,7 +6,7 @@ class Bullet extends GameObject {
   float bulletSize;
   PShape body;
 
-  Bullet(float x, float y, float theta, float size, float timeToLive) {
+  Bullet(float x, float y, float theta, float size, float timeToLive, float speed) {
     id = 3;
     pos = new PVector(x, y);
     forward = new PVector(0, 1);
@@ -15,7 +15,7 @@ class Bullet extends GameObject {
     this.timeToLive = timeToLive;    
     this.alive = 0;
     this.size = bulletSize * 2;
-    speed = 300;
+    this.speed = speed;
     create();
   }
 
