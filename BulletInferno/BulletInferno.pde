@@ -30,12 +30,18 @@ float timeDelta = 1.0f / 60.0f;
 
 
 void draw() {
-  background(0);  
+  background(0); 
 
   for (int i = 0; i < gameObjects.size(); i++) {
     GameObject go = gameObjects.get(i); 
     go.update();
     go.render();
+  }
+  
+  for (int i = 0; i < gameObjects.size(); i++) {
+    GameObject go = gameObjects.get(i); 
+    if(go.dead == true)
+      gameObjects.remove(go);
   }
 }
 
@@ -83,8 +89,7 @@ boolean bulletCollision(PVector pos, float size) {
       if (dist(pos.x, pos.y, go.pos.x, go.pos.y) <= (size + go.size) * 0.5f) {
         gameObjects.remove(go);
         return true;
-        
       }
   }
-return false;
+  return false;
 }

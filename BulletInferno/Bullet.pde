@@ -36,7 +36,6 @@ class Bullet extends GameObject {
   void render() {
     pushMatrix();
     translate(pos.x, pos.y);
-    ellipse(0,0, size, size);
     rotate(theta);
     shape(body);
     popMatrix();
@@ -47,11 +46,11 @@ class Bullet extends GameObject {
     forward.y = - cos(theta);
 
     pos.add(PVector.mult(PVector.mult(forward, speed), timeDelta));
-    if ((pos.x > width) || (pos.x < 0) || (pos.y > height) || (pos.y < 0))
-      gameObjects.remove(this);
+    if ((pos.x > width) || (pos.y > height) || (pos.y < 0) || pos.x < 0)
+      this.dead = true;
 
     alive += timeDelta;
     if (alive > timeToLive || groundCollision(pos, size))
-      gameObjects.remove(this);
+      this.dead = true;
   }
 }

@@ -70,12 +70,7 @@ class Player extends GameObject {
     else text("Jump:  false", 5, 112);
     text("Time delta: " + timeDelta, 5, 132);
     int counter = 0;
-    for (int i = gameObjects.size() -1; i >= 0; i --) {
-      GameObject go = gameObjects.get(i); 
-      if (go.id == 3)
-          counter++;
-    }
-    text("Bullets: " + counter, 5, 152);
+    
   }
 
   void update() {
@@ -96,7 +91,7 @@ class Player extends GameObject {
     pos.add(PVector.mult(velocity, timeDelta));
 
     if (bulletCollision(pos, size))
-      gameObjects.remove(this);
+      this.dead = true;
   }
 
   void gravity() {
