@@ -4,6 +4,10 @@ class GameObject{
   PVector forward;
   float size;
   
+  //Ground attributes
+  float gWidth;
+  float gHeight;
+  
   void update(){
   }
   

@@ -53,10 +53,26 @@ class Player extends GameObject {
 
     if (checkKey(right))
       velocity.x = power;
-
+    
+    //gravity();
+    sideCollision();
+    
     if (checkKey(up) && pos.y - 150 > 0)
       velocity.y = -power;
 
     pos.add(PVector.mult(velocity, timeDelta));
+  }
+  
+  void gravity() {
+      gravity = 20.5f;
+      velocity.y += gravity;
+  }
+  
+  void sideCollision(){
+    if(pos.x - size/2 < 0)
+      pos.x = size/2;
+
+    if(pos.x + size/2 > width)
+      pos.x = width - size/2;
   }
 }

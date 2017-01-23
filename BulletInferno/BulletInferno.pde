@@ -4,6 +4,8 @@ void setup(){
   fill(255);
   stroke(255);
   
+  Ground ground = new Ground(0, height * 0.95f, width, height * 0.05f);
+  gameObjects.add(ground);
   init();//Initialise player object
 }
 
@@ -42,14 +44,10 @@ void keyPressed() {
     init();
 }
 
-
-
 //Looks for key releases
 void keyReleased() {
   keys[keyCode] = false;
 }
-
-
 
 //used to check if a key is being pressed
 boolean checkKey(int k) {
