@@ -21,6 +21,8 @@ void init() {
 }
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+boolean[] keys = new boolean[1000];
+float timeDelta = 1.0f / 60.0f;
 
 void draw(){
   background(0);  
@@ -30,4 +32,28 @@ void draw(){
     go.update();
     go.render();
   }
+}
+
+//looks for key presses
+void keyPressed() { 
+  keys[keyCode] = true;
+
+  if (key == 'r')
+    init();
+}
+
+
+
+//Looks for key releases
+void keyReleased() {
+  keys[keyCode] = false;
+}
+
+
+
+//used to check if a key is being pressed
+boolean checkKey(int k) {
+  if (keys.length >= k) 
+    return keys[k] || keys[Character.toUpperCase(k)];  
+  return false;
 }

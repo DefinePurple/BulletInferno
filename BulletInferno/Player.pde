@@ -41,15 +41,22 @@ class Player extends GameObject {
     translate(pos.x, pos.y);
     shape(shape, 0, 0);
     stroke(0);
-    ellipse(0,0, size,size);
+    ellipse(0, 0, size, size);
     popMatrix(); // Restore the transform
   }
 
   void update() {
-      
-  }
+    velocity.x = 0;
 
- 
-  
-  
+    if (checkKey(left))
+      velocity.x = -power;
+
+    if (checkKey(right))
+      velocity.x = power;
+
+    if (checkKey(up) && pos.y - 150 > 0)
+      velocity.y = -power;
+
+    pos.add(PVector.mult(velocity, timeDelta));
+  }
 }
