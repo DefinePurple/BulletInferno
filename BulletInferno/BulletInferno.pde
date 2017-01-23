@@ -19,7 +19,7 @@ void init() {
       a = true;
   }
   if (!a) {
-    Player player = new Player(width / 2, height / 2, 20, 'w', 's', 'a', 'd');  
+    Player player = new Player(width / 2, height * 0.7f, 20, 'w', 's', 'a', 'd');  
     gameObjects.add(player);
   }
 }
@@ -50,7 +50,7 @@ void keyPressed() {
   keys[keyCode] = true;
 
   //Makes new character
-  if (key == 'r')
+  if (key == 'r' || key == 'R')
     init();
 }
 
