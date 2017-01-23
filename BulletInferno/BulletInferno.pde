@@ -55,3 +55,15 @@ boolean checkKey(int k) {
     return keys[k] || keys[Character.toUpperCase(k)];  
   return false;
 }
+
+//Checks if the object is within the ground
+//If they are, return true
+boolean groundCollision(PVector pos, float size) {
+  for (int i = gameObjects.size() -1; i >= 0; i --) {
+    GameObject go = gameObjects.get(i); 
+    if (go.id == 0)
+      if (pos.y + size/2 >= go.pos.y && pos.y + size/2 <= go.pos.y + go.gHeight && pos.x > go.pos.x && pos.x < go.pos.x + go.gWidth)
+        return true;
+  }
+  return false;
+}

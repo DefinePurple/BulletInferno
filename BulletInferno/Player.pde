@@ -30,6 +30,14 @@ class Player extends GameObject {
 
     power = 400;
     mass = 1;
+
+    for (int i = gameObjects.size() -1; i >= 0; i --) {
+      GameObject go = gameObjects.get(i); 
+      if (go.id == 0){
+        this.gHeight = go.gHeight;
+        this.gWidth = go.gWidth;
+      }
+    }
   }
 
   void create() {
@@ -53,26 +61,30 @@ class Player extends GameObject {
 
     if (checkKey(right))
       velocity.x = power;
-    
-    //gravity();
+
+    gravity();
     sideCollision();
-    
+
     if (checkKey(up) && pos.y - 150 > 0)
       velocity.y = -power;
 
     pos.add(PVector.mult(velocity, timeDelta));
   }
-  
+
   void gravity() {
+    if (!groundCollision(pos, size)) {
       gravity = 20.5f;
       velocity.y += gravity;
+    } else { 
+      velocity.y = 0;
+    }
   }
-  
-  void sideCollision(){
-    if(pos.x - size/2 < 0)
+
+  void sideCollision() {
+    if (pos.x - size/2 < 0)
       pos.x = size/2;
 
-    if(pos.x + size/2 > width)
+    if (pos.x + size/2 > width)
       pos.x = width - size/2;
   }
 }
