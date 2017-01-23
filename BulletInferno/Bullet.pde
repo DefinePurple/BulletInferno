@@ -3,7 +3,7 @@ class Bullet extends GameObject {
   float speed;
   float timeToLive;
   float alive;
-
+  float bulletSize;
   PShape body;
 
   Bullet(float x, float y, float theta, float size, float timeToLive) {
@@ -11,11 +11,11 @@ class Bullet extends GameObject {
     pos = new PVector(x, y);
     forward = new PVector(0, 1);
     this.theta = theta;
-    this.size = size;
+    this.bulletSize = size;
     this.timeToLive = timeToLive;    
     this.alive = 0;
-
-    speed = 200;
+    this.size = bulletSize * 2;
+    speed = 300;
     create();
   }
 
@@ -25,10 +25,10 @@ class Bullet extends GameObject {
     body.stroke(255, 255, 0);
     body.noFill();
     body.strokeWeight(2);
-    body.vertex(0, -size);
-    body.vertex(-size/2, size / 3);
-    body.vertex(0, size);
-    body.vertex(size/2, size/3);
+    body.vertex(0, -bulletSize);
+    body.vertex(-bulletSize/2, bulletSize / 3);
+    body.vertex(0, bulletSize);
+    body.vertex(bulletSize/2, bulletSize/3);
     body.endShape(CLOSE);
   }
 
@@ -36,6 +36,7 @@ class Bullet extends GameObject {
   void render() {
     pushMatrix();
     translate(pos.x, pos.y);
+    ellipse(0,0, size, size);
     rotate(theta);
     shape(body);
     popMatrix();

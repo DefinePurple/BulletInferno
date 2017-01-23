@@ -1,12 +1,14 @@
-void setup(){
+void setup() {
   //fullscreen();
-  size(600,600);
+  size(600, 600);
   fill(255);
   stroke(255);
-  
+
   Ground ground = new Ground(0, height * 0.95f, width, height * 0.05f);
   gameObjects.add(ground);
   init();//Initialise player object
+  Gun gun = new Gun();
+  gameObjects.add(gun);
 }
 
 void init() {
@@ -25,31 +27,22 @@ void init() {
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[1000];
 float timeDelta = 1.0f / 60.0f;
-float shoot;
-int numBullets = 100;
-float startingTheta = PI; 
 
-void draw(){
+
+void draw() {
   background(0);  
-  
+
   for (int i = 0; i < gameObjects.size(); i++) {
     GameObject go = gameObjects.get(i); 
     go.update();
     go.render();
-  }
-  
-  shoot += timeDelta;
-  if (shoot  >= 1) {
-      Bullet b = new Bullet(width/2, height * 0.1f, startingTheta, 9, 8); 
-      gameObjects.add(b);
-    shoot = 0;
   }
 }
 
 //looks for key presses
 void keyPressed() { 
   keys[keyCode] = true;
-  
+
   //Makes new character
   if (key == 'r')
     init();
@@ -87,10 +80,11 @@ boolean bulletCollision(PVector pos, float size) {
   for (int i = gameObjects.size() -1; i >= 0; i --) {
     GameObject go = gameObjects.get(i); 
     if (go.id == 3)
-      if (dist(pos.x, pos.y, go.pos.x, go.pos.y) <= size/2) {
+      if (dist(pos.x, pos.y, go.pos.x, go.pos.y) <= (size + go.size) * 0.5f) {
         gameObjects.remove(go);
         return true;
+        
       }
   }
-  return false;
+return false;
 }
