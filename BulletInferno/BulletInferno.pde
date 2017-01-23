@@ -39,7 +39,8 @@ void draw(){
 //looks for key presses
 void keyPressed() { 
   keys[keyCode] = true;
-
+  
+  //Makes new character
   if (key == 'r')
     init();
 }
@@ -56,7 +57,7 @@ boolean checkKey(int k) {
   return false;
 }
 
-//Checks if the object is within the ground
+//Checks if the objects 'feet' are within the ground
 //If they are, return true
 boolean groundCollision(PVector pos, float size) {
   for (int i = gameObjects.size() -1; i >= 0; i --) {

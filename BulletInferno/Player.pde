@@ -77,6 +77,7 @@ class Player extends GameObject {
       velocity.y += gravity;
     } else { 
       velocity.y = 0;
+      pos.y = height - gHeight - size/2;      
     }
   }
 
