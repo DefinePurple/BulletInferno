@@ -1,4 +1,5 @@
 void setup(){
+  //fullscreen();
   size(600,600);
   fill(255);
   stroke(255);
