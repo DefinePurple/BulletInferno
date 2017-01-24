@@ -1,0 +1,7 @@
+Guidelines 
+200 < Speed < 300
+0 < Swap < 1 
+10 < Number of bullets < 15 for normal 
+Number of bullets = 50 for circular
+10 < increment < 40
+0.5 < shooting time < 1

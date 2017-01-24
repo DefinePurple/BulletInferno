@@ -6,6 +6,7 @@ class Gun extends GameObject {
 
   boolean shoot;
   File [] files;
+  File file;
   Gun() {
     id = 4;
     shoot = true;
@@ -45,7 +46,7 @@ class Gun extends GameObject {
     if (timer % 60 == 0)
       second ++;
 
-    if (second % 20 <= 5)
+    if (second % 15 <= 3)
       shoot = false;
     else 
     shoot = true;
@@ -53,8 +54,11 @@ class Gun extends GameObject {
 
 
   void readFile() {
-    //File file = files[(int) random(0, files.length)];
-    File file = files[1];
+    File check = files[(int) random(0, files.length)];
+    if(check != file)
+      file = check;
+      
+    //File file = files[1];
     String lines[] = loadStrings(file);
     ArrayList<String> line = new ArrayList<String>();
     String string = "";
@@ -88,11 +92,13 @@ class Gun extends GameObject {
       this.startingTheta = PI;
       this.pos = new PVector(width/2, height * 0.1f);
     }
+    this.numBullets = int(line.get(2));
     int increment = int(line.get(3));
     this.shootingTime = float(line.get(4));
+    int direction = int(line.get(5));
+    
     this.speed = int(line.get(0));
-    this.numBullets = int(line.get(2));
-    this.incTheta = NEW_PI/increment;
+    this.incTheta = (NEW_PI/increment) * direction;
     this.offsetTheta = NEW_PI/(numBullets+1);
   }
 }
