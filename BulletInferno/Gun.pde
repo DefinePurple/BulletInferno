@@ -19,6 +19,8 @@ class Gun extends GameObject {
 
   void render() {
     text(second, width/2, height/2);
+
+    println(file);
   }
 
   void update() {
@@ -36,6 +38,7 @@ class Gun extends GameObject {
       shootingInterval = 0;
     }
 
+
     if (shoot == false)
       readFile();
   }
@@ -48,21 +51,21 @@ class Gun extends GameObject {
     if (second % 15 <= 3)
       shoot = false;
     else 
-    shoot = true;
+      shoot = true;
   }
 
 
   void readFile() {
     File check = files[(int) random(0, files.length)];
-    if(check != file)
+    if (check != file)
       file = check;
-    
-    //File file = files[1];
+
+    //File file = files[7];
     String lines[] = loadStrings(file);
     ArrayList<String> line = new ArrayList<String>();
     String string = "";
     char ch;
-
+    
     for (int i = 0; i < lines.length; i++) {
       int j = 1;
       while (lines[i].charAt( lines[i].length()-j) != ' ') {
@@ -95,7 +98,7 @@ class Gun extends GameObject {
     int increment = int(line.get(3));
     this.shootingTime = float(line.get(4));
     int direction = int(line.get(5));
-    
+
     this.speed = int(line.get(0));
     this.incTheta = (NEW_PI/increment) * direction;
     this.offsetTheta = NEW_PI/(numBullets+1);
