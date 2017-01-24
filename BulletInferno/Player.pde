@@ -1,6 +1,6 @@
 class Player extends GameObject {
   float radius;
-  
+
   PShape shape;
   char up, down, left, right;
 
@@ -12,7 +12,6 @@ class Player extends GameObject {
     id = 1;
     pos = new PVector(x, y);
     forward = new PVector(-1, 0);
-    accel = new PVector(0, 0);
     velocity = new PVector(0, 0);
     force = new PVector(0, 0);
     this.size = size;
@@ -63,8 +62,6 @@ class Player extends GameObject {
       text("Jump: true", 5, 112);
     else text("Jump:  false", 5, 112);
     text("Time delta: " + timeDelta, 5, 132);
-    int counter = 0;
-    
   }
 
   void update() {
@@ -84,12 +81,12 @@ class Player extends GameObject {
 
     pos.add(PVector.mult(velocity, timeDelta));
 
-    if (bulletCollision(pos, size))
+    if (centerCollision(pos, size, 3))
       this.dead = true;
   }
 
   void gravity() {
-    if (!groundCollision(pos, size)) {
+    if (!edgeCollision(pos, size)) {
       gravity = 20.5f;
       velocity.y += gravity;
     } else { 

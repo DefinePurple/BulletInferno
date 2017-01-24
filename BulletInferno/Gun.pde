@@ -51,7 +51,7 @@ class Gun extends GameObject {
     if (second % 15 <= 3)
       shoot = false;
     else 
-      shoot = true;
+    shoot = true;
   }
 
 
@@ -65,7 +65,7 @@ class Gun extends GameObject {
     ArrayList<String> line = new ArrayList<String>();
     String string = "";
     char ch;
-    
+
     for (int i = 0; i < lines.length; i++) {
       int j = 1;
       while (lines[i].charAt( lines[i].length()-j) != ' ') {

@@ -50,7 +50,7 @@ class Bullet extends GameObject {
       this.dead = true;
 
     alive += timeDelta;
-    if (alive > timeToLive || groundCollision(pos, size))
+    if (alive > timeToLive || edgeCollision(pos, size))
       this.dead = true;
   }
 }

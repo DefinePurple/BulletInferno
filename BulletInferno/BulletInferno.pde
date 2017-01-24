@@ -23,9 +23,10 @@ void init() {
     gameObjects.add(player);
   }
   Coin coin = new Coin();
-    gameObjects.add(coin);
+  gameObjects.add(coin);
 }
 
+Score score = new Score();
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[1000];
 float timeDelta = 1.0f / 60.0f;
@@ -33,9 +34,7 @@ float time = 0;
 
 void draw() {
   background(0); 
-    
-  
-  
+
   for (int i = 0; i < gameObjects.size(); i++) {
     GameObject go = gameObjects.get(i); 
     go.update();
@@ -47,6 +46,8 @@ void draw() {
     if (go.dead == true)
       gameObjects.remove(go);
   }
+  
+  score.render();
 }
 
 //looks for key presses
@@ -72,7 +73,7 @@ boolean checkKey(int k) {
 
 //Checks if the objects 'feet' are within the ground
 //If they are, return true
-boolean groundCollision(PVector pos, float size) {
+boolean edgeCollision(PVector pos, float size) {
   for (int i = gameObjects.size() -1; i >= 0; i --) {
     GameObject go = gameObjects.get(i); 
     if (go.id == 0)
@@ -86,12 +87,13 @@ boolean groundCollision(PVector pos, float size) {
 //If the current object being fetched is a bullet
 //And it is within the radius of the object which called the function(player)
 //remove the bullet game object and return true to the caller
-boolean bulletCollision(PVector pos, float size) {
+boolean centerCollision(PVector pos, float size, int id) {
   for (int i = gameObjects.size() -1; i >= 0; i --) {
     GameObject go = gameObjects.get(i); 
-    if (go.id == 3)
+    if (go.id == id)
       if (dist(pos.x, pos.y, go.pos.x, go.pos.y) <= size/2 + go.size/4) {
-        gameObjects.remove(go);
+        if (id == 3)
+          gameObjects.remove(go);
         return true;
       }
   }
