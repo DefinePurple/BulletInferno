@@ -5,3 +5,4 @@ Guidelines
 Number of bullets = 50 for circular
 10 < increment < 40
 0.5 < shooting time < 1
+Direction = 1 or -1 

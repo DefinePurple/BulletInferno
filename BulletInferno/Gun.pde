@@ -57,7 +57,7 @@ class Gun extends GameObject {
     File check = files[(int) random(0, files.length)];
     if(check != file)
       file = check;
-      
+    
     //File file = files[1];
     String lines[] = loadStrings(file);
     ArrayList<String> line = new ArrayList<String>();
