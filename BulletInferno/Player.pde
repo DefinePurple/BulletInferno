@@ -28,7 +28,7 @@ class Player extends GameObject {
     this.down = down;
     create();
 
-    power = 400;
+    power = 350;
     mass = 1;
 
     for (int i = gameObjects.size() -1; i >= 0; i --) {
@@ -85,7 +85,7 @@ class Player extends GameObject {
     gravity();
     sideCollision();
 
-    if (checkKey(up) && pos.y - 150 > 0)
+    if (checkKey(up) && pos.y - 125 > 0)
       velocity.y = -power;
 
     pos.add(PVector.mult(velocity, timeDelta));

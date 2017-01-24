@@ -19,7 +19,7 @@ void init() {
       a = true;
   }
   if (!a) {
-    Player player = new Player(width / 2, height * 0.7f, 20, 'w', 's', 'a', 'd');  
+    Player player = new Player(width / 2, height * 0.7f, 15, 'w', 's', 'a', 'd');  
     gameObjects.add(player);
   }
 }
@@ -37,10 +37,10 @@ void draw() {
     go.update();
     go.render();
   }
-  
+
   for (int i = 0; i < gameObjects.size(); i++) {
     GameObject go = gameObjects.get(i); 
-    if(go.dead == true)
+    if (go.dead == true)
       gameObjects.remove(go);
   }
 }
@@ -86,7 +86,7 @@ boolean bulletCollision(PVector pos, float size) {
   for (int i = gameObjects.size() -1; i >= 0; i --) {
     GameObject go = gameObjects.get(i); 
     if (go.id == 3)
-      if (dist(pos.x, pos.y, go.pos.x, go.pos.y) <= (size + go.size) * 0.5f) {
+      if (dist(pos.x, pos.y, go.pos.x, go.pos.y) <= size/2 + go.size/4) {
         gameObjects.remove(go);
         return true;
       }

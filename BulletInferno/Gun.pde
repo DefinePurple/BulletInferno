@@ -1,14 +1,12 @@
 class Gun extends GameObject {
-  float shoot;
-  int numBullets;
+  float shootingInterval, shootingTime;
   float startingTheta, incTheta, offsetTheta, NEW_PI, speed;
-  int swap;
-  
+  int swap, numBullets;
+
   File [] files;
   Gun() {
     id = 4;
-    
-    
+
     File dir; 
     dir = new File(dataPath(""));
     files = dir.listFiles();
@@ -20,8 +18,8 @@ class Gun extends GameObject {
   }
 
   void update() {
-    shoot += timeDelta;
-    if (shoot  >= 0.5) {
+    shootingInterval += timeDelta;
+    if (shootingInterval  >= shootingTime) {
       for (int i = -numBullets/2; i <= numBullets/2; i++) {
         Bullet b = new Bullet(pos.x, pos.y, startingTheta + offsetTheta*i, 9, 8, speed); 
         gameObjects.add(b);
@@ -30,12 +28,13 @@ class Gun extends GameObject {
       if ((startingTheta >= PI + PI/3 || startingTheta <= PI - PI/3) && swap != 1)
         incTheta *= -1;
 
-      shoot = 0;
+      shootingInterval = 0;
     }
   }
 
   void readFile() {
-    File file = files[(int) random(0,files.length)];
+    //File file = files[(int) random(0, files.length)];
+    File file = files[1];
     String lines[] = loadStrings(file);
     ArrayList<String> line = new ArrayList<String>();
     String string = "";
@@ -58,7 +57,7 @@ class Gun extends GameObject {
       line.add(string);
       string = "";
     }
-    
+
     swap = int(line.get(1));
     if (swap == 1) {
       NEW_PI = PI + HALF_PI;
@@ -69,9 +68,11 @@ class Gun extends GameObject {
       this.startingTheta = PI;
       this.pos = new PVector(width/2, height * 0.1f);
     }
+    int increment = int(line.get(3));
+    this.shootingTime = float(line.get(4));
     this.speed = int(line.get(0));
     this.numBullets = int(line.get(2));
-    this.incTheta = NEW_PI/numBullets*2;
+    this.incTheta = NEW_PI/increment;
     this.offsetTheta = NEW_PI/(numBullets+1);
   }
 }
