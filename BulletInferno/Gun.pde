@@ -12,14 +12,14 @@ class Gun extends GameObject {
     shoot = true;
     second = 1;
     File dir; 
-    dir = new File(dataPath(""));
+    dir = new File(sketchPath("config"));
+    println(dir);
     files = dir.listFiles();
     readFile();
   }
 
   void render() {
     text(second, width/2, height/2);
-
     println(file);
   }
 
