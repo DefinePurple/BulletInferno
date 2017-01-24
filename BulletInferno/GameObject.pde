@@ -4,6 +4,9 @@ class GameObject{
   PVector forward;
   float size;
   boolean dead;
+  float gravity;
+  PVector velocity;
+  PVector accel;
   
   //Ground attributes
   float gWidth;

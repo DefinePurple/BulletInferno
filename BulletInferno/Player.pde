@@ -1,10 +1,6 @@
 class Player extends GameObject {
-  PVector velocity;
-  PVector accel;
-
   float radius;
-  float mass;
-  float gravity;
+  
   PShape shape;
   char up, down, left, right;
 
@@ -29,8 +25,6 @@ class Player extends GameObject {
     create();
 
     power = 350;
-    mass = 1;
-
     for (int i = gameObjects.size() -1; i >= 0; i --) {
       GameObject go = gameObjects.get(i); 
       if (go.id == 0) {

@@ -7,8 +7,8 @@ void setup() {
   Ground ground = new Ground(0, height * 0.95f, width, height * 0.05f);
   gameObjects.add(ground);
   init();//Initialise player object
-  Gun gun = new Gun();
-  gameObjects.add(gun);
+  //Gun gun = new Gun();
+  //gameObjects.add(gun);
 }
 
 void init() {
@@ -22,16 +22,20 @@ void init() {
     Player player = new Player(width / 2, height * 0.7f, 15, 'w', 's', 'a', 'd');  
     gameObjects.add(player);
   }
+  Coin coin = new Coin();
+    gameObjects.add(coin);
 }
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[1000];
 float timeDelta = 1.0f / 60.0f;
-
+float time = 0;
 
 void draw() {
   background(0); 
-
+    
+  
+  
   for (int i = 0; i < gameObjects.size(); i++) {
     GameObject go = gameObjects.get(i); 
     go.update();
