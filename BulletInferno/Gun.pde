@@ -14,7 +14,6 @@ class Gun extends GameObject {
     File dir; 
     dir = new File(dataPath(""));
     files = dir.listFiles();
-    println(files);
     readFile();
   }
 

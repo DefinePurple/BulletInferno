@@ -1,6 +1,6 @@
-Speed = 300
+Speed = 400
 Gun Type = 1
 Number of bullets = 50
-Increment = 20
-Shooting Time = 0.5
+Increment = 10
+Shooting Time = 1
 Direction = -1
