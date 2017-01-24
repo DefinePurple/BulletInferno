@@ -1,12 +1,15 @@
 class Gun extends GameObject {
   float shootingInterval, shootingTime;
   float startingTheta, incTheta, offsetTheta, NEW_PI, speed;
-  int swap, numBullets;
+  int gunType, numBullets, second;
+  float timer;
 
+  boolean shoot;
   File [] files;
   Gun() {
     id = 4;
-
+    shoot = true;
+    second = 1;
     File dir; 
     dir = new File(dataPath(""));
     files = dir.listFiles();
@@ -15,22 +18,39 @@ class Gun extends GameObject {
   }
 
   void render() {
+    text(second, width/2, height/2);
   }
 
   void update() {
     shootingInterval += timeDelta;
-    if (shootingInterval  >= shootingTime) {
+    timer();
+    if (shootingInterval  >= shootingTime && shoot == true) {
       for (int i = -numBullets/2; i <= numBullets/2; i++) {
         Bullet b = new Bullet(pos.x, pos.y, startingTheta + offsetTheta*i, 9, 8, speed); 
         gameObjects.add(b);
       }
       startingTheta += incTheta;
-      if ((startingTheta >= PI + PI/4 || startingTheta <= PI - PI/4) && swap != 1)
+      if ((startingTheta >= PI + PI/4 || startingTheta <= PI - PI/4) && gunType != 1)
         incTheta *= -1;
 
       shootingInterval = 0;
     }
+
+    if (shoot == false)
+      readFile();
   }
+
+  void timer() {
+    timer++;
+    if (timer % 60 == 0)
+      second ++;
+
+    if (second % 20 <= 5)
+      shoot = false;
+    else 
+    shoot = true;
+  }
+
 
   void readFile() {
     //File file = files[(int) random(0, files.length)];
@@ -58,8 +78,8 @@ class Gun extends GameObject {
       string = "";
     }
 
-    swap = int(line.get(1));
-    if (swap == 1) {
+    gunType = int(line.get(1));
+    if (gunType == 1) {
       NEW_PI = PI + HALF_PI;
       this.startingTheta = 0;
       this.pos = new PVector(width/2, height * 0.45f);
