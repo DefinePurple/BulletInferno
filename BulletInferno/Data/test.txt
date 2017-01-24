@@ -1,5 +1,5 @@
 Speed = 200
 Swap = 0
 Number of bullets = 15
-Increment = 10
+Increment = 30
 Shooting Time = 0.5

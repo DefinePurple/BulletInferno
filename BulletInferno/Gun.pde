@@ -25,7 +25,7 @@ class Gun extends GameObject {
         gameObjects.add(b);
       }
       startingTheta += incTheta;
-      if ((startingTheta >= PI + PI/3 || startingTheta <= PI - PI/3) && swap != 1)
+      if ((startingTheta >= PI + PI/4 || startingTheta <= PI - PI/4) && swap != 1)
         incTheta *= -1;
 
       shootingInterval = 0;
@@ -64,7 +64,7 @@ class Gun extends GameObject {
       this.startingTheta = 0;
       this.pos = new PVector(width/2, height * 0.45f);
     } else {
-      NEW_PI = PI - (HALF_PI);
+      NEW_PI = PI - HALF_PI;
       this.startingTheta = PI;
       this.pos = new PVector(width/2, height * 0.1f);
     }
