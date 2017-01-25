@@ -1,6 +1,6 @@
 class Player extends GameObject {
   float radius;
-
+  PVector groundPosition;
   PShape shape;
   char up, down, left, right;
 
@@ -8,14 +8,14 @@ class Player extends GameObject {
   float power;
 
   // Make different keys control the ship!
-  Player(float x, float y, float size, char up, char down, char left, char right) {
-    id = 1;
-    pos = new PVector(x, y);
-    forward = new PVector(-1, 0);
-    velocity = new PVector(0, 0);
-    force = new PVector(0, 0);
+  Player(float x, float y, float size, char up, char down, char left, char right, PVector groundPosition) {
+    this.id = 1;
+    this.pos = new PVector(x, y);
+    this.forward = new PVector(-1, 0);
+    this.velocity = new PVector(0, 0);
+    this.force = new PVector(0, 0);
     this.size = size;
-    radius = size / 2;
+    this.radius = size / 2;
 
     this.left = left;
     this.right = right;
@@ -23,14 +23,8 @@ class Player extends GameObject {
     this.down = down;
     create();
 
-    power = 350;
-    for (int i = gameObjects.size() -1; i >= 0; i --) {
-      GameObject go = gameObjects.get(i); 
-      if (go.id == 0) {
-        this.gHeight = go.gHeight;
-        this.gWidth = go.gWidth;
-      }
-    }
+    this.groundPosition = groundPosition;
+    this.power = 350;
   }
 
   void create() {
@@ -48,12 +42,15 @@ class Player extends GameObject {
   }
 
   void info() {
+    textSize(12);
     text("X: " + pos.x + "     Y: " + pos.y, 5, 12);
     text("Vertical: " + velocity.y, 5, 32);
     text("Horizontl: " + velocity.x, 5, 52);
+    
     if (checkKey(left))
       text("Left: true", 5, 72);
     else text("Left: false", 5, 72);
+    
     if (checkKey(right))
       text("Right: true", 5, 92);
     else text("Right:  false", 5, 92);
@@ -61,6 +58,7 @@ class Player extends GameObject {
     if (checkKey(up))
       text("Jump: true", 5, 112);
     else text("Jump:  false", 5, 112);
+    
     text("Time delta: " + timeDelta, 5, 132);
   }
 
@@ -87,11 +85,10 @@ class Player extends GameObject {
 
   void gravity() {
     if (!edgeCollision(pos, size)) {
-      gravity = 20.5f;
       velocity.y += gravity;
     } else { 
       velocity.y = 0;
-      pos.y = height - gHeight - size/2;
+      pos.y = groundPosition.y - size/2;
     }
   }
 

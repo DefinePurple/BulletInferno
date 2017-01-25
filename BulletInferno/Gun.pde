@@ -8,12 +8,11 @@ class Gun extends GameObject {
   File [] files;
   File file;
   Gun() {
-    id = 4;
-    shoot = true;
-    second = 1;
+    this.id = 4;
+    this.shoot = true;
+    this.second = 1;
     File dir; 
     dir = new File(sketchPath("config"));
-    println(dir);
     files = dir.listFiles();
     readFile();
   }
@@ -38,7 +37,6 @@ class Gun extends GameObject {
       shootingInterval = 0;
     }
 
-
     if (shoot == false)
       readFile();
   }
@@ -60,7 +58,6 @@ class Gun extends GameObject {
     if (check != file)
       file = check;
 
-    //File file = files[7];
     String lines[] = loadStrings(file);
     ArrayList<String> line = new ArrayList<String>();
     String string = "";
@@ -83,8 +80,14 @@ class Gun extends GameObject {
       line.add(string);
       string = "";
     }
-
-    gunType = int(line.get(1));
+    
+    this.speed = int(line.get(0));
+    this.gunType = int(line.get(1));
+    this.numBullets = int(line.get(2));
+    int increment = int(line.get(3));
+    this.shootingTime = float(line.get(4));
+    int direction = int(line.get(5));
+    
     if (gunType == 1) {
       NEW_PI = PI + HALF_PI;
       this.startingTheta = 0;
@@ -94,12 +97,7 @@ class Gun extends GameObject {
       this.startingTheta = PI;
       this.pos = new PVector(width/2, height * 0.1f);
     }
-    this.numBullets = int(line.get(2));
-    int increment = int(line.get(3));
-    this.shootingTime = float(line.get(4));
-    int direction = int(line.get(5));
-
-    this.speed = int(line.get(0));
+    
     this.incTheta = (NEW_PI/increment) * direction;
     this.offsetTheta = NEW_PI/(numBullets+1);
   }

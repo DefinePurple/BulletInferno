@@ -1,21 +1,17 @@
 class Coin extends GameObject {
   float alive;
   float timeToLive;
-
-  Coin() {
-    id = 5;
-    pos = new PVector(width/2, height * 0.3f);
-    velocity = new PVector(0, 0);
-    size = 20;
-    timeToLive = 5;
-
-    for (int i = gameObjects.size() -1; i >= 0; i --) {
-      GameObject go = gameObjects.get(i); 
-      if (go.id == 0) {
-        this.gHeight = go.gHeight;
-        this.gWidth = go.gWidth;
-      }
-    }
+  PVector groundPosition;
+  
+  Coin(PVector groundPosition, PVector temp) {
+    super();
+    this.id = 5;
+    this.pos = temp;
+    this.velocity = new PVector(0, 0);
+    this.size = 10;
+    this.timeToLive = 5;  
+    
+    this.groundPosition = groundPosition;
   }
 
   void render() {  
@@ -39,11 +35,10 @@ class Coin extends GameObject {
 
   void gravity() {
     if (!edgeCollision(pos, size)) {
-      gravity = 20.5f;
       velocity.y += gravity;
     } else { 
       velocity.y = 0;
-      pos.y = height - gHeight - size/2;
+      pos.y = groundPosition.y - size/2;
     }
   }
 }

@@ -4,11 +4,13 @@ void setup() {
   fill(255);
   stroke(255);
 
-  Ground ground = new Ground(0, height * 0.95f, width, height * 0.05f);
+  ground = new Ground(0, height * 0.95f, width, height * 0.05f);
   gameObjects.add(ground);
   init();//Initialise player object
-  //Gun gun = new Gun();
-  //gameObjects.add(gun);
+  Gun gun = new Gun();
+  gameObjects.add(gun);
+
+  score = new Score(ground.gHeight);
 }
 
 void init() {
@@ -19,14 +21,16 @@ void init() {
       a = true;
   }
   if (!a) {
-    Player player = new Player(width / 2, height * 0.7f, 15, 'w', 's', 'a', 'd');  
+    Player player = new Player(width / 2, height * 0.7f, 15, 'w', 's', 'a', 'd', ground.pos);  
     gameObjects.add(player);
   }
-  Coin coin = new Coin();
+  PVector temp = new PVector(random(10, width-10), -20);
+  Coin coin = new Coin(ground.pos, temp);
   gameObjects.add(coin);
 }
 
-Score score = new Score();
+Score score;
+Ground ground;
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[1000];
 float timeDelta = 1.0f / 60.0f;
@@ -46,7 +50,7 @@ void draw() {
     if (go.dead == true)
       gameObjects.remove(go);
   }
-  
+
   score.render();
 }
 

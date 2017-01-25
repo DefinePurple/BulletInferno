@@ -6,11 +6,15 @@ class GameObject {
   boolean dead;
   float gravity;
   PVector velocity;
-
+  
   //Ground attributes
   float gWidth;
   float gHeight;
-
+  
+  GameObject(){
+    gravity = 10; 
+  }
+  
   void update() {
   }
 
