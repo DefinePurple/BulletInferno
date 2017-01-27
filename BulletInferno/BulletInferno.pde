@@ -23,9 +23,6 @@ void init() {
     Player player = new Player(width / 2, height * 0.7f, 15, 'w', 's', 'a', 'd', ground.pos);  
     gameObjects.add(player);
   }
-  PVector temp = new PVector(random(10, width-10), -20);
-  Coin coin = new Coin(ground.pos, temp);
-  gameObjects.add(coin);
 }
 
 Timer timer = new Timer();
@@ -38,7 +35,7 @@ float timeDelta = 1.0f / 60.0f;
 
 void draw() {
   background(0); 
-
+  textSize(20);
   for (int i = 0; i < gameObjects.size(); i++) {
     GameObject go = gameObjects.get(i); 
     go.update();
@@ -50,7 +47,7 @@ void draw() {
     if (go.dead == true)
       gameObjects.remove(go);
   }
-
+  
   score.render();
 }
 

@@ -42,23 +42,28 @@ class Player extends GameObject {
 
   void info() {
     textSize(12);
-    text("X: " + pos.x + "     Y: " + pos.y, 5, 12);
-    text("Vertical: " + velocity.y, 5, 32);
-    text("Horizontl: " + velocity.x, 5, 52);
-    
+    textAlign(LEFT, BOTTOM);
+    pushMatrix();
+    translate(5, 40);
+    text("X: " + pos.x + "     Y: " + pos.y, 0, 12);
+    text("Vertical: " + velocity.y, 0, 32);
+    text("Horizontl: " + velocity.x, 0, 52);
+
     if (checkKey(left))
-      text("Left: true", 5, 72);
-    else text("Left: false", 5, 72);
-    
+      text("Left: true", 0, 72);
+    else text("Left: false", 0, 72);
+
     if (checkKey(right))
-      text("Right: true", 5, 92);
-    else text("Right:  false", 5, 92);
+      text("Right: true", 0, 92);
+    else text("Right:  false", 0, 92);
 
     if (checkKey(up))
-      text("Jump: true", 5, 112);
-    else text("Jump:  false", 5, 112);
-    
-    text("Time delta: " + timeDelta, 5, 132);
+      text("Jump: true", 0, 112);
+    else text("Jump:  false", 0, 112);
+
+    text("Time delta: " + timeDelta, 0, 132);
+    textSize(20);
+    popMatrix();
   }
 
   void update() {
