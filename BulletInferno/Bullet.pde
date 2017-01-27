@@ -41,7 +41,7 @@ class Bullet extends GameObject {
     popMatrix();
   }
 
-  void update() { // Overrides the method in the base class
+  void update() {
     forward.x = sin(theta);
     forward.y = - cos(theta);
 

@@ -18,7 +18,6 @@ class Gun extends GameObject {
   }
 
   void render() {
-    text(second, width/2, height/2);
     println(file);
   }
 
@@ -54,7 +53,8 @@ class Gun extends GameObject {
 
 
   void readFile() {
-    File check = files[(int) random(0, files.length)];
+    println(files.length);
+    File check = files[(int) random(0, files.length-1)];
     if (check != file)
       file = check;
 
@@ -89,7 +89,7 @@ class Gun extends GameObject {
     int direction = int(line.get(5));
     
     if (gunType == 1) {
-      NEW_PI = PI + HALF_PI;
+      NEW_PI = PI + HALF_PI + QUARTER_PI/2;
       this.startingTheta = 0;
       this.pos = new PVector(width/2, height * 0.45f);
     } else {

@@ -11,7 +11,6 @@ class Player extends GameObject {
   Player(float x, float y, float size, char up, char down, char left, char right, PVector groundPosition) {
     this.id = 1;
     this.pos = new PVector(x, y);
-    this.forward = new PVector(-1, 0);
     this.velocity = new PVector(0, 0);
     this.force = new PVector(0, 0);
     this.size = size;

@@ -12,7 +12,7 @@ class GameObject {
   float gHeight;
   
   GameObject(){
-    gravity = 10; 
+    gravity = 12.5; 
   }
   
   void update() {

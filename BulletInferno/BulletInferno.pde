@@ -9,8 +9,7 @@ void setup() {
   init();//Initialise player object
   Gun gun = new Gun();
   gameObjects.add(gun);
-
-  score = new Score(ground.gHeight);
+  gameObjects.add(timer);
 }
 
 void init() {
@@ -29,12 +28,13 @@ void init() {
   gameObjects.add(coin);
 }
 
-Score score;
+Timer timer = new Timer();
+Score score = new Score();
 Ground ground;
+
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[1000];
 float timeDelta = 1.0f / 60.0f;
-float time = 0;
 
 void draw() {
   background(0); 

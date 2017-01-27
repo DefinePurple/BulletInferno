@@ -1,15 +1,13 @@
 class Score {
   int score, multiplier, place, mod;
   String text;
-  float groundHeight;
   
-  Score(float gHeight) {
+  Score() {
     super();
     this.score = 0;
     this.multiplier = 1;
     this.place = 1;
     this.mod = 10;
-    this.groundHeight = groundHeight;
   }
   
   void render(){
@@ -21,7 +19,7 @@ class Score {
       mod *= 10;
     }
     text = "Score: " + nf(score,place,0);
-    text(text, 10, height - (groundHeight/2));  
+    text(text, 10, height - 5);  
     fill(255);
   }
   
