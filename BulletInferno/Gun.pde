@@ -1,8 +1,7 @@
 class Gun extends GameObject {
   float shootingInterval, shootingTime;
   float startingTheta, incTheta, offsetTheta, NEW_PI, speed;
-  int gunType, numBullets, second;
-  float timer;
+  int gunType, numBullets;
 
   boolean shoot;
   File [] files;
@@ -10,7 +9,6 @@ class Gun extends GameObject {
   Gun() {
     this.id = 4;
     this.shoot = true;
-    this.second = 1;
     File dir; 
     dir = new File(sketchPath("config"));
     files = dir.listFiles();
@@ -23,7 +21,12 @@ class Gun extends GameObject {
 
   void update() {
     shootingInterval += timeDelta;
-    timer();
+    
+    if (timer.seconds % 15 <= 3)
+      shoot = false;
+    else 
+    shoot = true;
+    
     if (shootingInterval  >= shootingTime && shoot == true) {
       for (int i = -numBullets/2; i <= numBullets/2; i++) {
         Bullet b = new Bullet(pos.x, pos.y, startingTheta + offsetTheta*i, 9, 8, speed); 
@@ -41,14 +44,6 @@ class Gun extends GameObject {
   }
 
   void timer() {
-    timer++;
-    if (timer % 60 == 0)
-      second ++;
-
-    if (second % 15 <= 3)
-      shoot = false;
-    else 
-    shoot = true;
   }
 
 
@@ -80,14 +75,14 @@ class Gun extends GameObject {
       line.add(string);
       string = "";
     }
-    
+
     this.speed = int(line.get(0));
     this.gunType = int(line.get(1));
     this.numBullets = int(line.get(2));
     int increment = int(line.get(3));
     this.shootingTime = float(line.get(4));
     int direction = int(line.get(5));
-    
+
     if (gunType == 1) {
       NEW_PI = PI + HALF_PI + QUARTER_PI/2;
       this.startingTheta = 0;
@@ -97,7 +92,7 @@ class Gun extends GameObject {
       this.startingTheta = PI;
       this.pos = new PVector(width/2, height * 0.1f);
     }
-    
+
     this.incTheta = (NEW_PI/increment) * direction;
     this.offsetTheta = NEW_PI/(numBullets+1);
   }
