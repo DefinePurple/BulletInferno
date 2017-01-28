@@ -20,4 +20,10 @@ class GameObject {
 
   void render() {
   }
+  
+  void doDeath(){
+    if(dead == true)
+      gameObjects.remove(this); 
+  }
+
 }

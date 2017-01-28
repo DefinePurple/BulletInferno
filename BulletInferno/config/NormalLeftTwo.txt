@@ -1,6 +1,0 @@
-Speed = 300
-Gun Type = 0
-Number of bullets = 10
-Increment = 8
-Shooting Time = 0.8
-Direction = 1

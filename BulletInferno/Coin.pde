@@ -5,7 +5,7 @@ class Coin extends GameObject {
   
   Coin(PVector groundPosition, PVector temp, int size, int timeToLive) {
     super();
-    this.id = 5;
+    this.id = 3;
     this.pos = temp;
     this.velocity = new PVector(0, 0);
     this.size = size;
@@ -27,7 +27,7 @@ class Coin extends GameObject {
     if (alive > timeToLive)
       this.dead = true;
 
-    if (centerCollision(pos, size, 1)) {
+    if (centerCollision(pos, size, PLAYER)) {
       this.dead = true;
       score.addScore();
     }

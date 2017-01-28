@@ -1,26 +1,33 @@
+int GROUND = 0;
+int PLAYER = 1;
+int BULLET = 2;
+int COIN = 3;
+int GUN = 4;
+
+
 void setup() {
-  //fullscreen();
-  size(600, 600);
+  fullScreen();
+  // size(600, 600);
   fill(255);
   stroke(255);
 
-  ground = new Ground(0, height * 0.95f, width, height * 0.05f);
+  ground = new Ground(width * 0.5f, height * 0.95f, width * 1.2f, height * 0.05f);
   gameObjects.add(ground);
   init();//Initialise player object
   Gun gun = new Gun();
   gameObjects.add(gun);
-  gameObjects.add(timer);
 }
+
 
 void init() {
   boolean a = false;
   for (int i = gameObjects.size() -1; i >= 0; i --) {
     GameObject go = gameObjects.get(i); 
-    if (go.id == 1)
+    if (go.id == PLAYER)
       a = true;
   }
   if (!a) {
-    Player player = new Player(width / 2, height * 0.7f, 15, 'w', 's', 'a', 'd', ground.pos);  
+    Player player = new Player(width / 2, height * 0.7f, 15, 'w', 's', 'a', 'd', ' ', ground.pos);  
     gameObjects.add(player);
   }
 }
@@ -44,10 +51,11 @@ void draw() {
 
   for (int i = 0; i < gameObjects.size(); i++) {
     GameObject go = gameObjects.get(i); 
-    if (go.dead == true)
-      gameObjects.remove(go);
+    go.doDeath();
   }
-  
+
+  timer.render();
+  timer.update();
   score.render();
 }
 
@@ -68,7 +76,8 @@ void keyReleased() {
 //used to check if a key is being pressed
 boolean checkKey(int k) {
   if (keys.length >= k) 
-    return keys[k] || keys[Character.toUpperCase(k)];  
+    return keys[k] || keys[Character.toUpperCase(k)];
+
   return false;
 }
 
@@ -77,7 +86,7 @@ boolean checkKey(int k) {
 boolean edgeCollision(PVector pos, float size) {
   for (int i = gameObjects.size() -1; i >= 0; i --) {
     GameObject go = gameObjects.get(i); 
-    if (go.id == 0)
+    if (go.id == GROUND)
       if (pos.y + size/2 >= go.pos.y && pos.y + size/2 <= go.pos.y + go.gHeight && pos.x > go.pos.x && pos.x < go.pos.x + go.gWidth)
         return true;
   }
@@ -93,7 +102,7 @@ boolean centerCollision(PVector pos, float size, int id) {
     GameObject go = gameObjects.get(i); 
     if (go.id == id)
       if (dist(pos.x, pos.y, go.pos.x, go.pos.y) <= size/2 + go.size/4) {
-        if (id == 3)
+        if (id == BULLET)
           gameObjects.remove(go);
         return true;
       }

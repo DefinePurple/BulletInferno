@@ -2,13 +2,13 @@ class Player extends GameObject {
   float radius;
   PVector groundPosition;
   PShape shape;
-  char up, down, left, right;
+  char up, down, left, right, run;
 
   PVector force;
   float power;
 
   // Make different keys control the ship!
-  Player(float x, float y, float size, char up, char down, char left, char right, PVector groundPosition) {
+  Player(float x, float y, float size, char up, char down, char left, char right, char run, PVector groundPosition) {
     this.id = 1;
     this.pos = new PVector(x, y);
     this.velocity = new PVector(0, 0);
@@ -20,6 +20,7 @@ class Player extends GameObject {
     this.right = right;
     this.up = up;
     this.down = down;
+    this.run = run;
     create();
 
     this.groundPosition = groundPosition;
@@ -69,6 +70,11 @@ class Player extends GameObject {
   void update() {
     velocity.x = 0;
 
+    if (checkKey(run))
+      power = 700;
+    else
+      power = 350;
+
     if (checkKey(left))
       velocity.x = -power;
 
@@ -83,7 +89,7 @@ class Player extends GameObject {
 
     pos.add(PVector.mult(velocity, timeDelta));
 
-    if (centerCollision(pos, size, 3))
+    if (centerCollision(pos, size, BULLET))
       this.dead = true;
   }
 
@@ -97,10 +103,15 @@ class Player extends GameObject {
   }
 
   void sideCollision() {
-    if (pos.x - size/2 < 0)
+    if (pos.x - size/2 <= 0) {
       pos.x = size/2;
-
-    if (pos.x + size/2 > width)
+      if (checkKey(left))
+        power = 0;
+    }
+    if (pos.x + size/2 >= width) {
       pos.x = width - size/2;
+      if (checkKey(right))
+        power = 0;
+     }
   }
 }

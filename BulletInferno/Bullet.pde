@@ -7,7 +7,7 @@ class Bullet extends GameObject {
   PShape body;
 
   Bullet(float x, float y, float theta, float size, float timeToLive, float speed) {
-    this.id = 3;
+    this.id = 2;
     this.pos = new PVector(x, y);
     this.forward = new PVector(0, 1);
     this.theta = theta;

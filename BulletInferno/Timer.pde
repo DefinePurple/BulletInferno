@@ -1,11 +1,10 @@
-class Timer extends GameObject {
+class Timer{
   int previous;
   int seconds, minutes;
 
   Timer() {
     seconds = 0;
     previous = second();
-    pos = new PVector(5, 5);
   }
 
   void render() {
@@ -14,7 +13,7 @@ class Timer extends GameObject {
     
     String string = nf(minutes % 60, 2, 0) + " : " + nf(seconds % 60, 2, 0);
     pushMatrix();
-    translate(pos.x, pos.y);
+    translate(5, 5);
     text(string, 0,0);
     popMatrix();
   }
