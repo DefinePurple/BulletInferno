@@ -2,10 +2,12 @@ class GameObject {
   int id;
   PVector pos;
   PVector forward;
-  float size;
-  boolean dead;
-  float gravity;
   PVector velocity;
+
+  float size;
+  float gravity;
+
+  boolean dead;
   
   //Ground attributes
   float gWidth;
@@ -21,6 +23,7 @@ class GameObject {
   void render() {
   }
   
+  //Called every time draw runs, if the object is set to dead, kill it.
   void doDeath(){
     if(dead == true)
       gameObjects.remove(this); 

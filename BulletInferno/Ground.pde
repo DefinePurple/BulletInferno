@@ -1,3 +1,4 @@
+//Ground is a unique object which the player stands on
 class Ground extends GameObject {  
   Ground(float x, float y, float gWidth, float gHeight) {
     id = 0;
