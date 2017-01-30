@@ -28,7 +28,7 @@ class Timer {
       PVector temp = new PVector(random(10, width-10), -20);
       
       if ((int)random(0, 500) % 5 == 0) {
-        Multiplier multi = new Multiplier(ground.pos, temp, 10, 7);
+        Multiplier multi = new Multiplier(ground.pos, temp, (width+height) * 0.01f, 7);
         gameObjects.add(multi);
       } else {
 
