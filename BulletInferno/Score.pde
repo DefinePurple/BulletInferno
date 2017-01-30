@@ -19,7 +19,7 @@ class Score {
       mod *= 10;
     }
     //Convert and format integer to string
-    text = "Score: " + nf(score, place, 0);
+    text = "Score: " + nf(score, place, 0) + "    Multiplier x" + multiplier;
     
     //Place string on screen
     pushMatrix();
@@ -31,5 +31,9 @@ class Score {
   //Gets called everytime a coin is picked up.
   void addScore() {
     score += 1 * multiplier;
+  }
+  
+  void increaseMultiplier(){
+    multiplier++; 
   }
 }

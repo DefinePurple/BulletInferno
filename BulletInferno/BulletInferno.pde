@@ -14,8 +14,8 @@ void setup() {
   ground = new Ground(width * 0.5f, height * 0.95f, width * 1.2f, height * 0.05f);
   gameObjects.add(ground);
   init();//Initialise player object
-  Gun gun = new Gun();
-  gameObjects.add(gun);
+  //Gun gun = new Gun();
+  //gameObjects.add(gun);
 }
 
 
