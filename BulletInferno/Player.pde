@@ -69,17 +69,15 @@ class Player extends GameObject {
 
   void update() {
     velocity.x = 0;
-
+    int runMultiplier = 1;
     if (checkKey(run))
-      power = 700;
-    else
-      power = 350;
+      runMultiplier = 2;
 
     if (checkKey(left))
-      velocity.x = -power;
+      velocity.x = -power * runMultiplier;
 
     if (checkKey(right))
-      velocity.x = power;
+      velocity.x = power * runMultiplier;
 
     gravity();
     sideCollision();
@@ -106,12 +104,16 @@ class Player extends GameObject {
     if (pos.x - size/2 <= 0) {
       pos.x = size/2;
       if (checkKey(left))
-        power = 0;
+        velocity.x = 0;
     }
+
     if (pos.x + size/2 >= width) {
       pos.x = width - size/2;
       if (checkKey(right))
-        power = 0;
-     }
+        velocity.x = 0;
+    }
+    
+    if(pos.y - size/2 <= 0)
+      pos.y = size/2;
   }
 }

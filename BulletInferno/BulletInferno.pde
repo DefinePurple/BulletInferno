@@ -6,31 +6,38 @@ int GUN = 4;
 
 
 void setup() {
-  fullScreen();
-  // size(600, 600);
+  //fullScreen();
+  size(600, 600);
   fill(255);
   stroke(255);
-
+  
   ground = new Ground(width * 0.5f, height * 0.95f, width * 1.2f, height * 0.05f);
   gameObjects.add(ground);
   init();//Initialise player object
-  Gun gun = new Gun();
-  gameObjects.add(gun);
+  //Gun gun = new Gun();
+  //gameObjects.add(gun);
 }
 
 
+//initialise the player object
+//checks the list of objects if there is already a player
+//if there is no other player, create a new one
 void init() {
   boolean a = false;
+  
   for (int i = gameObjects.size() -1; i >= 0; i --) {
     GameObject go = gameObjects.get(i); 
     if (go.id == PLAYER)
       a = true;
   }
+  
   if (!a) {
     Player player = new Player(width / 2, height * 0.7f, 15, 'w', 's', 'a', 'd', ' ', ground.pos);  
     gameObjects.add(player);
   }
 }
+
+
 
 Timer timer = new Timer();
 Score score = new Score();
@@ -40,15 +47,20 @@ ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[1000];
 float timeDelta = 1.0f / 60.0f;
 
+
+
 void draw() {
   background(0); 
   textSize(20);
+  
+  //iterate through the list of objects while updating and rendering each one
   for (int i = 0; i < gameObjects.size(); i++) {
     GameObject go = gameObjects.get(i); 
     go.update();
     go.render();
   }
 
+  //checks if all objects are dead
   for (int i = 0; i < gameObjects.size(); i++) {
     GameObject go = gameObjects.get(i); 
     go.doDeath();
@@ -103,7 +115,7 @@ boolean centerCollision(PVector pos, float size, int id) {
     if (go.id == id)
       if (dist(pos.x, pos.y, go.pos.x, go.pos.y) <= size/2 + go.size/4) {
         if (id == BULLET)
-          gameObjects.remove(go);
+          go.dead = true;
         return true;
       }
   }
