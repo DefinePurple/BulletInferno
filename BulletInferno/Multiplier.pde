@@ -3,17 +3,19 @@ class Multiplier extends GameObject {
   float timeToLive;
   PVector groundPosition;
   
-  Multiplier(PVector groundPosition, PVector temp, int timeToLive) {
+  Multiplier(PVector groundPosition, PVector temp, float size, int timeToLive) {
     super();
     this.id = 3;
     this.pos = temp;
     this.velocity = new PVector(0, 0);
     this.timeToLive = timeToLive;  
+    this.size = size;
     
     this.groundPosition = groundPosition;
   }
 
   void render() {  
+    textAlign(CENTER);
     text(score.multiplier + 1 + "x" ,pos.x, pos.y);
   }
 

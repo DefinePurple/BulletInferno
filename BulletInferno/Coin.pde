@@ -3,7 +3,7 @@ class Coin extends GameObject {
   float timeToLive;
   PVector groundPosition;
   
-  Coin(PVector groundPosition, PVector temp, int size, int timeToLive) {
+  Coin(PVector groundPosition, PVector temp, float size, int timeToLive) {
     super();
     this.id = 3;
     this.pos = temp;

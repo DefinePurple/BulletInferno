@@ -6,8 +6,8 @@ int GUN = 4;
 
 
 void setup() {
-  //fullScreen();
-  size(600, 600);
+  fullScreen();
+  //size(400, 400);
   fill(255);
   stroke(255);
   
@@ -32,7 +32,7 @@ void init() {
   }
   
   if (!a) {
-    Player player = new Player(width / 2, height * 0.7f, 15, 'w', 's', 'a', 'd', ' ', ground.pos);  
+    Player player = new Player(width / 2, height * 0.7f, (width + height) * 0.01f, 'w', 's', 'a', 'd', ' ', ground.pos);  
     gameObjects.add(player);
   }
 }

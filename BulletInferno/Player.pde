@@ -9,6 +9,7 @@ class Player extends GameObject {
 
   // Make different keys control the ship!
   Player(float x, float y, float size, char up, char down, char left, char right, char run, PVector groundPosition) {
+    super();
     this.id = 1;
     this.pos = new PVector(x, y);
     this.velocity = new PVector(0, 0);
@@ -24,7 +25,7 @@ class Player extends GameObject {
     create();
 
     this.groundPosition = groundPosition;
-    this.power = 350;
+    this.power = (width + height) * 0.3f;
   }
 
   void create() {
@@ -38,7 +39,7 @@ class Player extends GameObject {
     stroke(0);
     ellipse(0, 0, size, size);
     popMatrix(); // Restore the transform
-    info();
+    //info();
   }
 
   void info() {
@@ -69,10 +70,10 @@ class Player extends GameObject {
 
   void update() {
     velocity.x = 0;
-    int runMultiplier = 1;
+    float runMultiplier = 1;
     
     if (checkKey(run))
-      runMultiplier = 2;
+      runMultiplier = 1.5f;
 
     if (checkKey(left))
       velocity.x = -power * runMultiplier;
