@@ -28,8 +28,8 @@ class Coin extends GameObject {
       this.dead = true;
 
     if (centerCollision(pos, size, PLAYER)) {
-      this.dead = true;
       score.addScore();
+      this.dead = true;
     }
   }
 

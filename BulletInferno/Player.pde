@@ -70,6 +70,7 @@ class Player extends GameObject {
   void update() {
     velocity.x = 0;
     int runMultiplier = 1;
+    
     if (checkKey(run))
       runMultiplier = 2;
 

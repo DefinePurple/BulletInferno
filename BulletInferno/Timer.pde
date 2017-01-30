@@ -27,6 +27,11 @@ class Timer{
       PVector temp = new PVector(random(10, width-10), -20);
       Coin coin = new Coin(ground.pos, temp, 10, 7);
       gameObjects.add(coin);
+      
+      if((int)random(0, 100) % 2 == 0){
+        //Multiplier multi = new Multiplier(ground.pos, temp, 10, 7);
+        //gameObjects.add(multi);
+      }
       seconds++;
     }
     
