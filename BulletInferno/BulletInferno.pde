@@ -23,7 +23,6 @@ void setup() {
 //checks the list of objects if there is already a player
 //if there is no other player, create a new one
 void init() {
-  boolean a = false;
   timer = new Timer();
   score = new Score();
   gameObjects = new ArrayList<GameObject>();

@@ -1,4 +1,4 @@
-class Coin extends GameObject {
+class Coin extends GameObject implements Item {
   float alive;
   float timeToLive;
   PVector groundPosition;

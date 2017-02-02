@@ -28,5 +28,4 @@ class GameObject {
     if(dead == true)
       gameObjects.remove(this); 
   }
-
 }

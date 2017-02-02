@@ -1,0 +1,3 @@
+class DeathSplash extends Splash{
+  
+}
