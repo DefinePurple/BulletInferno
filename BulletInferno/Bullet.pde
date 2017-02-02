@@ -5,8 +5,10 @@ class Bullet extends GameObject {
   float alive;
   float bulletSize;
   PShape body;
+  
+  color colour;
 
-  Bullet(float x, float y, float theta, float size, float timeToLive, float speed) {
+  Bullet(float x, float y, float theta, float size, float timeToLive, float speed, color colour) {
     this.id = 2;
     this.pos = new PVector(x, y);
     this.forward = new PVector(0, 1);
@@ -16,6 +18,7 @@ class Bullet extends GameObject {
     this.alive = 0;
     this.size = bulletSize * 2;
     this.speed = speed;
+    this.colour = colour;
     create();
   }
   
@@ -23,7 +26,7 @@ class Bullet extends GameObject {
   void create() {
     body = createShape();
     body.beginShape();
-    body.stroke(255, 255, 0);
+    body.stroke(colour);
     body.noFill();
     body.strokeWeight(2);
     body.vertex(0, -bulletSize);

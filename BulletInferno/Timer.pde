@@ -8,16 +8,17 @@ class Timer {
   }
 
   void render() {
-    textSize((width + height) * 0.015f);
-    textAlign(LEFT, TOP);
+    textSize(textSize);
+    textAlign(RIGHT, TOP);
 
     //converts and formats the integers into a string
     String string = nf(minutes % 60, 2, 0) + " : " + nf(seconds % 60, 2, 0);
 
     //place the string on the screen
     pushMatrix();
-    translate(5, 5);
-    text(string, 0, 0);
+    translate(width - 10, 5);
+    
+    text(string + "  " + seconds, 0, 0);
     popMatrix();
   }
 
@@ -26,9 +27,9 @@ class Timer {
     if (previous != second()) {
 
       PVector temp = new PVector(random(10, width-10), -20);
-      
+            
       if ((int)random(0, 500) % 5 == 0) {
-        Multiplier multi = new Multiplier(ground.pos, temp, (width+height) * 0.01f, 7);
+        Multiplier multi = new Multiplier(ground.pos, temp, textSize, 7);
         gameObjects.add(multi);
       } else {
 
@@ -39,7 +40,7 @@ class Timer {
     }
 
     //every 60 seconds increment minute
-    if (seconds%60 == 0 && previous != second())
+    if (seconds % 60 == 0 && previous != second())
       minutes ++;
 
     //set previous to be the current second

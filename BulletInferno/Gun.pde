@@ -29,7 +29,7 @@ class Gun extends GameObject {
     
     if (shootingInterval  >= shootingTime && shoot == true) {
       for (int i = -numBullets/2; i <= numBullets/2; i++) {
-        Bullet b = new Bullet(pos.x, pos.y, startingTheta + offsetTheta*i, 9, 8, speed); 
+        Bullet b = new Bullet(pos.x, pos.y, startingTheta + offsetTheta*i, 9, 8, speed, colour); 
         gameObjects.add(b);
       }
       startingTheta += incTheta;

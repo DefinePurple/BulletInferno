@@ -85,7 +85,7 @@ class Player extends GameObject {
     sideCollision();
 
     if (checkKey(up) && pos.y - 100 > 0)
-      velocity.y = -power;
+      velocity.y = -power/2;
 
     pos.add(PVector.mult(velocity, timeDelta));
 
