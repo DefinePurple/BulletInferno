@@ -4,6 +4,9 @@ int BULLET = 2;
 int COIN = 3;
 int GUN = 4;
 
+int SPLASH = 0;
+int GAME = 1;
+
 void setup() {
   //fullScreen();
   size(600, 600);
@@ -11,7 +14,8 @@ void setup() {
   stroke(255);
   textSize = (width + height) * 0.0125f;
 
-  init();//Initialise player object
+  //init();//Initialise player object
+  splash = new Splash("DEAD");
 }
 
 
@@ -23,32 +27,30 @@ void init() {
   timer = new Timer();
   score = new Score();
   gameObjects = new ArrayList<GameObject>();
-  
-  
+
+
   ground = new Ground(width * 0.5f, height * 0.95f, width * 1.2f, height * 0.05f);
   gameObjects.add(ground);
-  
+
   for (int i = gameObjects.size() -1; i >= 0; i --) {
     GameObject go = gameObjects.get(i); 
     if (go.id == PLAYER)
       a = true;
   }
-  
+
   if (!a) {
     Player player = new Player(width / 2, height * 0.7f, (width + height) * 0.008f, 'w', 's', 'a', 'd', ' ', ground.pos);  
     gameObjects.add(player);
   }
-  
+
   Gun gun = new Gun();
   gameObjects.add(gun);
-  
 }
-
-
 
 Timer timer;
 Score score;
 Ground ground;
+Splash splash;
 
 ArrayList<GameObject> gameObjects;
 boolean[] keys = new boolean[1000];
@@ -56,44 +58,50 @@ float timeDelta = 1.0f / 60.0f;
 float textSize;
 color colour;
 color bgColour;
-
+int screen = 0;
 
 void draw() {
-  bgColour = color(30,30,30);
-  background(bgColour); 
-  textSize(20);
-  
-  //iterate through the list of objects while updating and rendering each one
-  for (int i = 0; i < gameObjects.size(); i++) {
-    GameObject go = gameObjects.get(i); 
-    go.update();
-    go.render();
+  bgColour = 0;
+  if (screen == GAME) {
+    background(bgColour); 
+    textSize(textSize);
+
+    //iterate through the list of objects while updating and rendering each one
+    for (int i = 0; i < gameObjects.size(); i++) {
+      GameObject go = gameObjects.get(i); 
+      go.update();
+      go.render();
+    }
+
+    for (int i = 0; i < gameObjects.size(); i++) {
+      GameObject go = gameObjects.get(i);
+      go.doDeath();
+    }
+
+    timer.render();
+    timer.update();
+    score.render();
+    bulletColour();
+  } else if (screen == SPLASH) {
+    background(bgColour); 
+    splash.render();
   }
-  
-  for (int i = 0; i < gameObjects.size(); i++){
-    GameObject go = gameObjects.get(i);
-    go.doDeath();
-  }
-  
-  timer.render();
-  timer.update();
-  score.render();
-  bulletColour();
-  //delay(100);
 }
 
 //looks for key presses
-void keyPressed() { 
-  keys[keyCode] = true;
-
-  //Makes new character
-  if (key == 'r' || key == 'R')
-    init();
+void keyPressed() {
+  if (screen == GAME) {
+    keys[keyCode] = true;
+  }else if(screen == SPLASH){
+    
+  }
 }
 
 //Looks for key releases
 void keyReleased() {
-  keys[keyCode] = false;
+  if (screen == GAME) {
+    keys[keyCode] = false;
+  }
 }
 
 //used to check if a key is being pressed
@@ -133,8 +141,8 @@ boolean centerCollision(PVector pos, float size, int id) {
   return false;
 }
 
-void bulletColour(){
+void bulletColour() {
   float c = abs(sin(millis() / 5000.0f) * 255);
   float c2 = abs(cos(millis() / 5000.0f) * 255);
-  colour = color(c2, c, 0); 
+  colour = color(c2, c, 0);
 }
