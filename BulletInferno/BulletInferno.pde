@@ -15,7 +15,7 @@ void setup() {
   textSize = (width + height) * 0.0125f;
 
   //init();//Initialise player object
-  splash = new Splash("DEAD");
+  splash = new Splash();
 }
 
 
@@ -32,13 +32,7 @@ void init() {
   ground = new Ground(width * 0.5f, height * 0.95f, width * 1.2f, height * 0.05f);
   gameObjects.add(ground);
 
-  for (int i = gameObjects.size() -1; i >= 0; i --) {
-    GameObject go = gameObjects.get(i); 
-    if (go.id == PLAYER)
-      a = true;
-  }
-
-  if (!a) {
+  if (!checkPlayer()) {
     Player player = new Player(width / 2, height * 0.7f, (width + height) * 0.008f, 'w', 's', 'a', 'd', ' ', ground.pos);  
     gameObjects.add(player);
   }
@@ -58,11 +52,11 @@ float timeDelta = 1.0f / 60.0f;
 float textSize;
 color colour;
 color bgColour;
-int screen = 0;
+int screen = SPLASH;
 
 void draw() {
   bgColour = 0;
-  if (screen == GAME) {
+  if (screen == GAME && checkPlayer()) {
     background(bgColour); 
     textSize(textSize);
 
@@ -85,22 +79,28 @@ void draw() {
   } else if (screen == SPLASH) {
     background(bgColour); 
     splash.render();
+  } else {
+    for (int i = 0; i < gameObjects.size(); i++) {
+      gameObjects.remove(i);
+    }
+    screen = SPLASH;
+    splash = new Splash("Dead");
   }
 }
 
 //looks for key presses
 void keyPressed() {
-  if (screen == GAME) {
+  if (screen == GAME) 
     keys[keyCode] = true;
-  }else if(screen == SPLASH){
-    
-  }
 }
 
 //Looks for key releases
 void keyReleased() {
-  if (screen == GAME) {
+  if (screen == GAME)
     keys[keyCode] = false;
+  else if (screen == SPLASH) {
+    screen = GAME;
+    init();
   }
 }
 
@@ -145,4 +145,13 @@ void bulletColour() {
   float c = abs(sin(millis() / 5000.0f) * 255);
   float c2 = abs(cos(millis() / 5000.0f) * 255);
   colour = color(c2, c, 0);
+}
+
+boolean checkPlayer() {
+  for (int i = gameObjects.size() -1; i >= 0; i --) {
+    GameObject go = gameObjects.get(i); 
+    if (go.id == PLAYER)
+      return true;
+  }
+  return false;
 }
