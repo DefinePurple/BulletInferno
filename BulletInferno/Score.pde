@@ -1,6 +1,7 @@
 class Score {
   int score, multiplier, place, mod;
-
+  String text; 
+  
   Score() {
     this.score = 0;
     this.multiplier = 1;
@@ -19,7 +20,7 @@ class Score {
       mod *= 10;
     }
     //Convert and format integer to string
-    String text = "Score: " + nf(score, place, 0);
+    text = "Score: " + nf(score, place, 0);
     String text2 = "Multiplier x" + multiplier;
     
     //Place string on screen

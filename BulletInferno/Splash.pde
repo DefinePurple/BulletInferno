@@ -1,22 +1,17 @@
 class Splash {
-  String startText, title;
-  PVector posStartText, posTitle; 
+  String text, title;
+  PVector postext = new PVector(width * 0.5f, height * 0.7f);
+  PVector posTitle = new PVector(width * 0.5f, height * 0.2f); 
 
   Splash() {
-    this.startText = "Press any button to begin";
+    this.text = "Press Enter to begin";
     this.title = "BULLET INFERNO";
 
-    posStartText = new PVector(width * 0.5f, height * 0.7f);
+    postext = new PVector(width * 0.5f, height * 0.7f);
     posTitle = new PVector(width * 0.5f, height * 0.2f);
   }
 
-  Splash(String title) {
-    this.startText =  "Press any button to restart";
-    this.title = title;
-    
-    posStartText = new PVector(width * 0.5f, height * 0.7f);
-    posTitle = new PVector(width * 0.5f, height * 0.2f);
-  }
+
 
   void render() {
     textAlign(CENTER, CENTER);
@@ -27,8 +22,16 @@ class Splash {
     text(title, 0, 0);
     
     textSize((width+height) * 0.025f);
-    translate(0, posStartText.y - posTitle.y);
-    text(startText, 0, 0);
+    translate(0, postext.y - posTitle.y);
+    text(text, 0, 0);
     popMatrix();
+  }
+  
+  void update(){
+    if(keyBool == true){
+          screen = GAME;
+          init();
+          keyBool = false;
+    }
   }
 }

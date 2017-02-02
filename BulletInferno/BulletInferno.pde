@@ -47,6 +47,7 @@ Splash splash;
 
 ArrayList<GameObject> gameObjects;
 boolean[] keys = new boolean[1000];
+boolean keyBool;
 float timeDelta = 1.0f / 60.0f;
 float textSize;
 color colour;
@@ -78,32 +79,34 @@ void draw() {
   } else if (screen == SPLASH) {
     background(bgColour); 
     splash.render();
+    splash.update();
   } else {
     for (int i = 0; i < gameObjects.size(); i++) {
       gameObjects.remove(i);
     }
+    for (int i = 0; i < keys.length; i++) {
+      keys[i] = false;
+    }
     screen = SPLASH;
-    splash = new Splash("Dead");
+    splash = new DeathSplash(score.text, timer.time);
   }
 }
 
-//looks for key presses
+//Looks for key presses
 void keyPressed() {
   if (screen == GAME) 
     keys[keyCode] = true;
+  else if(screen == SPLASH && keyCode == ENTER)
+    keyBool = true;
 }
 
 //Looks for key releases
 void keyReleased() {
   if (screen == GAME)
-    keys[keyCode] = false;
-  else if (screen == SPLASH) {
-    screen = GAME;
-    init();
-  }
+    keys[keyCode] = false;   
 }
 
-//used to check if a key is being pressed
+//Used to check if a key is being pressed
 boolean checkKey(int k) {
   if (keys.length >= k) 
     return keys[k] || keys[Character.toUpperCase(k)];

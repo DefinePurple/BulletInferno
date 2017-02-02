@@ -1,4 +1,4 @@
-class Player extends GameObject implements Entity{
+class Player extends GameObject {
   float radius;
   PVector groundPosition;
   PShape shape;
@@ -8,7 +8,6 @@ class Player extends GameObject implements Entity{
   float power;
   float jumpPower;
 
-  // Make different keys control the ship!
   Player(float x, float y, float size, char up, char down, char left, char right, char run, PVector groundPosition) {
     super();
     this.id = 1;
