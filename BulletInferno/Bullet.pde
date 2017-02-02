@@ -1,4 +1,4 @@
-class Bullet extends GameObject {
+class Bullet extends GameObject{
   float theta;
   float speed;
   float timeToLive;
@@ -53,12 +53,17 @@ class Bullet extends GameObject {
     //Moves the bullet by its speed and in the direction of forward
     pos.add(PVector.mult(PVector.mult(forward, speed), timeDelta));
     //If the bullet goes offscreen, Kill it.
-    if ((pos.x > width) || (pos.y > height) || (pos.y < 0) || pos.x < 0)
-      this.dead = true;
-
+    
+    sideCollision();
+    
     //If the bullet is alive for long enough or it hits ground, kill it
     alive += timeDelta;
     if (alive > timeToLive || edgeCollision(pos, size))
+      this.dead = true;
+  }
+  
+  void sideCollision(){
+    if ((pos.x > width) || (pos.y > height) || (pos.y < 0) || pos.x < 0)
       this.dead = true;
   }
 }

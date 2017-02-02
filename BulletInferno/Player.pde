@@ -1,4 +1,4 @@
-class Player extends GameObject {
+class Player extends GameObject implements Entity{
   float radius;
   PVector groundPosition;
   PShape shape;

@@ -1,4 +1,4 @@
-class Multiplier extends GameObject {
+class Multiplier extends GameObject implements Entity{
   float alive;
   float timeToLive;
   PVector groundPosition;
