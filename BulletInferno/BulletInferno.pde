@@ -5,8 +5,8 @@ int COIN = 3;
 int GUN = 4;
 
 void setup() {
-  fullScreen();
-  //size(600, 600);
+  //fullScreen();
+  size(600, 600);
   fill(255);
   stroke(255);
   textSize = (width + height) * 0.0125f;
@@ -35,7 +35,7 @@ void init() {
   }
   
   if (!a) {
-    Player player = new Player(width / 2, height * 0.7f, (width + height) * 0.01f, 'w', 's', 'a', 'd', ' ', ground.pos);  
+    Player player = new Player(width / 2, height * 0.7f, (width + height) * 0.008f, 'w', 's', 'a', 'd', ' ', ground.pos);  
     gameObjects.add(player);
   }
   
@@ -55,11 +55,12 @@ boolean[] keys = new boolean[1000];
 float timeDelta = 1.0f / 60.0f;
 float textSize;
 color colour;
-
+color bgColour;
 
 
 void draw() {
-  background(0); 
+  bgColour = color(30,30,30);
+  background(bgColour); 
   textSize(20);
   
   //iterate through the list of objects while updating and rendering each one

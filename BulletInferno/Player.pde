@@ -6,6 +6,7 @@ class Player extends GameObject {
 
   PVector force;
   float power;
+  float jumpPower;
 
   // Make different keys control the ship!
   Player(float x, float y, float size, char up, char down, char left, char right, char run, PVector groundPosition) {
@@ -26,6 +27,7 @@ class Player extends GameObject {
 
     this.groundPosition = groundPosition;
     this.power = (width + height) * 0.3f;
+    this.jumpPower = size * 20;
   }
 
   void create() {
@@ -84,8 +86,8 @@ class Player extends GameObject {
     gravity();
     sideCollision();
 
-    if (checkKey(up) && pos.y - 100 > 0)
-      velocity.y = -power/2;
+    if (checkKey(up) && pos.y - height * 0.1f > 0)
+      velocity.y = -jumpPower;
 
     pos.add(PVector.mult(velocity, timeDelta));
 

@@ -27,7 +27,7 @@ class Bullet extends GameObject {
     body = createShape();
     body.beginShape();
     body.stroke(colour);
-    body.noFill();
+    body.fill(colour);
     body.strokeWeight(2);
     body.vertex(0, -bulletSize);
     body.vertex(-bulletSize/2, bulletSize / 3);

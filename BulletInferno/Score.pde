@@ -32,7 +32,7 @@ class Score {
 
   //Gets called everytime a coin is picked up.
   void addScore() {
-    score += 1 * multiplier;
+    score += 10 * multiplier;
   }
   
   void increaseMultiplier(){
