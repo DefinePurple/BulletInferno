@@ -14,13 +14,14 @@ class Coin extends GameObject implements Item {
     this.groundPosition = groundPosition;
   }
 
-  void render() {  
+  void render() {
+    fill(222,104,93);
     ellipse(pos.x, pos.y, size, size);
   }
 
   void update() {
     gravity();
-
+    
     pos.add(PVector.mult(velocity, timeDelta));  
 
     alive += timeDelta;

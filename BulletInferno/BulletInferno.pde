@@ -11,11 +11,13 @@ void setup() {
   //fullScreen();
   size(600, 600);
   fill(255);
-  stroke(255);
-  textSize = (width + height) * 0.0125f;
-
+  noStroke();
+  textSize = (width + height) * 0.01f;
+  
   //init();//Initialise player object
   splash = new Splash();
+  splashFont = loadFont("Arcade-100.vlw");
+  gameFont = loadFont("namco_regular-100.vlw");
 }
 
 
@@ -53,12 +55,14 @@ float textSize;
 color colour;
 color bgColour;
 int screen = SPLASH;
+PFont splashFont, gameFont;
 
 void draw() {
   bgColour = 0;
   if (screen == GAME && checkPlayer()) {
     background(bgColour); 
     textSize(textSize);
+    textFont(gameFont);
 
     //iterate through the list of objects while updating and rendering each one
     for (int i = 0; i < gameObjects.size(); i++) {
@@ -77,6 +81,7 @@ void draw() {
     score.render();
     bulletColour();
   } else if (screen == SPLASH) {
+    textFont(splashFont);
     background(bgColour); 
     splash.render();
     splash.update();

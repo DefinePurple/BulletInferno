@@ -12,14 +12,14 @@ class Timer {
   void render() {
     textSize(textSize);
     textAlign(RIGHT, TOP);
-
+    fill(255);
     //converts and formats the integers into a string
     time = nf(minutes % 60, 2, 0) + ":" + nf(seconds % 60, 2, 0);
 
     //place the string on the screen
     pushMatrix();
     translate(width - 10, 5);
-    text(time + "  " + seconds, 0, 0);
+    text(time + "  ", 0, 0);
     popMatrix();
   }
 

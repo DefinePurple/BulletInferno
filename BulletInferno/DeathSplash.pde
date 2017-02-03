@@ -3,7 +3,7 @@ class DeathSplash extends Splash {
   PVector posScore, posTime;
   
   DeathSplash(String score, String time){
-    this.text =  "Press Enter to restart";
+    this.text =  "Press Enter to Restart";
     this.title = "DEAD";
     this.score = score;
     this.time = time;

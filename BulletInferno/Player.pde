@@ -31,14 +31,14 @@ class Player extends GameObject {
 
   void create() {
     shape = createShape(RECT, -(size/2), -(size/2), size, size);
+    shape.setFill(color(255,238,0));
+    shape.setStroke(color(255,238,0));
   }
 
   void render() { // Overrides the method in the base class
     pushMatrix(); // Stores the current transform
     translate(pos.x, pos.y);
     shape(shape, 0, 0);
-    stroke(0);
-    ellipse(0, 0, size, size);
     popMatrix(); // Restore the transform
     //info();
   }

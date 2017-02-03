@@ -17,6 +17,7 @@ class Multiplier extends GameObject implements Entity{
   void render() {  
     textAlign(CENTER);
     textSize(textSize);
+    fill(204,155,8);
     text(score.multiplier + 1 + "x" ,pos.x, pos.y);
   }
 

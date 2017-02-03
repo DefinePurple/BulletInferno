@@ -20,8 +20,8 @@ class Score {
       mod *= 10;
     }
     //Convert and format integer to string
-    text = "Score: " + nf(score, place, 0);
-    String text2 = "Multiplier x" + multiplier;
+    text = "score: " + nf(score, place, 0);
+    String text2 = "multiplier x" + multiplier;
     
     //Place string on screen
     pushMatrix();

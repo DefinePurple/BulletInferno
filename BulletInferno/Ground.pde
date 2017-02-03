@@ -10,6 +10,7 @@ class Ground extends GameObject {
   }
 
   void render() {
+    fill(32,38,90);
     rect(pos.x, pos.y, gWidth, gHeight);
   }
 
