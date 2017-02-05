@@ -25,7 +25,7 @@ class Coin extends GameObject implements Item {
     PShape inner = createShape(ARC, 0, 0, size * 0.5f, size * 0.5f, PI - HALF_PI - QUARTER_PI - QUARTER_PI/3, TWO_PI - QUARTER_PI + QUARTER_PI/3);
     inner.setFill(false);
     inner.setStroke(true);
-    inner.setStroke(0);
+    inner.setStroke(color(120,51,40));
     
     shape.addChild(body);
     shape.addChild(inner);

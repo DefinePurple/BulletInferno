@@ -31,7 +31,7 @@ void init() {
   gameObjects = new ArrayList<GameObject>();
 
 
-  ground = new Ground(width * 0.5f, height * 0.95f, width * 1.2f, height * 0.05f);
+  ground = new Ground(width * 0.5f, height * 0.99f, width * 1.2f, height * 0.05f);
   gameObjects.add(ground);
 
   if (!checkPlayer()) {
