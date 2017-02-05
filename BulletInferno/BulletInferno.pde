@@ -15,7 +15,7 @@ void setup() {
   textSize = (width + height) * 0.01f;
   
   //init();//Initialise player object
-  splash = new Splash();
+  splash = new StartSplash();
   splashFont = loadFont("Arcade-100.vlw");
   gameFont = loadFont("namco_regular-100.vlw");
   
@@ -35,7 +35,7 @@ void init() {
   gameObjects.add(ground);
 
   if (!checkPlayer()) {
-    Player player = new Player(width / 2, height * 0.7f, (width + height) * 0.008f, 'w', 's', 'a', 'd', ' ', ground.pos);  
+    Player player = new Player(width / 2, height * 0.7f, (width + height) * 0.008f, 'w', 'a', 'd', ' ', ground.pos);  
     gameObjects.add(player);
   }
 

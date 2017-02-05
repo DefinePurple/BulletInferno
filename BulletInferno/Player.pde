@@ -2,13 +2,13 @@ class Player extends GameObject {
   float radius;
   PVector groundPosition;
   PShape shape;
-  char up, down, left, right, run;
+  char up, left, right, run;
 
   PVector force;
   float power;
   float jumpPower;
 
-  Player(float x, float y, float size, char up, char down, char left, char right, char run, PVector groundPosition) {
+  Player(float x, float y, float size, char up, char left, char right, char run, PVector groundPosition) {
     super();
     this.id = 1;
     this.pos = new PVector(x, y);
@@ -20,13 +20,12 @@ class Player extends GameObject {
     this.left = left;
     this.right = right;
     this.up = up;
-    this.down = down;
     this.run = run;
     create();
 
     this.groundPosition = groundPosition;
     this.power = (width + height) * 0.3f;
-    this.jumpPower = size * 20;
+    this.jumpPower = size * 22;
   }
 
   void create() {
