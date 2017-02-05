@@ -2,7 +2,6 @@ class Splash {
   String text, title;
   PVector postext = new PVector(width * 0.5f, height * 0.7f);
   PVector posTitle = new PVector(width * 0.5f, height * 0.2f); 
-  PFont font;
 
   Splash() {
     this.text = "Press Enter to begin";

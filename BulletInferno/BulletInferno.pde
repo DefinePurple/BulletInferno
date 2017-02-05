@@ -18,6 +18,7 @@ void setup() {
   splash = new Splash();
   splashFont = loadFont("Arcade-100.vlw");
   gameFont = loadFont("namco_regular-100.vlw");
+  
 }
 
 
