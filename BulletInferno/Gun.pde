@@ -2,7 +2,7 @@ class Gun extends GameObject {
   float shootingInterval, shootingTime;
   float startingTheta, incTheta, offsetTheta, NEW_PI, speed;
   int gunType, numBullets;
-  
+
   boolean shoot, chosen;
   File [] files;
   File file;
@@ -17,17 +17,16 @@ class Gun extends GameObject {
   }
 
   void render() {
-
   }
 
   void update() {
     shootingInterval += timeDelta;
-    
+
     if (timer.seconds % 15 <= 3)
       shoot = false;
     else 
     shoot = true;
-    
+
     if (shootingInterval  >= shootingTime && shoot == true) {
       for (int i = -numBullets/2; i <= numBullets/2; i++) {
         Bullet b = new Bullet(pos.x, pos.y, startingTheta + offsetTheta*i, (width + height) * 0.005f, 8, speed, colour); 
@@ -41,7 +40,7 @@ class Gun extends GameObject {
       chosen = false;
     }
 
-    if (shoot == false && timer.seconds % 15 == 0 && chosen != true){
+    if (shoot == false && timer.seconds % 15 == 0 && chosen != true) {
       readFile();
       chosen = true;
     }
@@ -50,7 +49,7 @@ class Gun extends GameObject {
 
   void readFile() {
     File previousFile = file;
-    while(previousFile == file){
+    while (previousFile == file) {
       file = files[(int) random(0, files.length-1)];
     }
 

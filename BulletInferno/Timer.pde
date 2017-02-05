@@ -1,9 +1,9 @@
 class Timer {
   int previous;
   int seconds, minutes;
-  
+
   String time;
-  
+
   Timer() {
     seconds = 0;
     previous = second();
@@ -27,7 +27,7 @@ class Timer {
     //If the current second is different to what it was last time, create a coin aswell as implement second
     if (previous != second()) {
       PVector temp = new PVector(random(10, width-10), -20);
-            
+
       if ((int)random(0, 1000) % 9 == 0) {
         Multiplier multi = new Multiplier(ground.pos, temp, textSize, 7);
         gameObjects.add(multi);

@@ -1,11 +1,11 @@
-class Bullet extends GameObject{
+class Bullet extends GameObject {
   float theta;
   float speed;
   float timeToLive;
   float alive;
   float bulletSize;
   PShape body;
-  
+
   color colour;
 
   Bullet(float x, float y, float theta, float size, float timeToLive, float speed, color colour) {
@@ -21,7 +21,7 @@ class Bullet extends GameObject{
     this.colour = colour;
     create();
   }
-  
+
   //Create the shape of the bullet
   void create() {
     body = createShape();
@@ -49,20 +49,20 @@ class Bullet extends GameObject{
     //Rotate the bullet to face in the right direction
     forward.x = sin(theta);
     forward.y = - cos(theta);
-  
+
     //Moves the bullet by its speed and in the direction of forward
     pos.add(PVector.mult(PVector.mult(forward, speed), timeDelta));
     //If the bullet goes offscreen, Kill it.
-    
+
     sideCollision();
-    
+
     //If the bullet is alive for long enough or it hits ground, kill it
     alive += timeDelta;
     if (alive > timeToLive || edgeCollision(pos, size))
       this.dead = true;
   }
-  
-  void sideCollision(){
+
+  void sideCollision() {
     if ((pos.x > width) || (pos.y > height) || (pos.y < 0) || pos.x < 0)
       this.dead = true;
   }

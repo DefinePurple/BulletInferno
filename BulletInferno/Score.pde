@@ -1,7 +1,7 @@
 class Score {
   int score, multiplier, place, mod;
   String text; 
-  
+
   Score() {
     this.score = 0;
     this.multiplier = 1;
@@ -13,7 +13,7 @@ class Score {
     fill(255);
     textAlign(LEFT, TOP);
     textSize(textSize);
-    
+
     //Increases how many places before the decimal point
     if (score % mod == 0 && score != 0) {
       place ++;
@@ -22,7 +22,7 @@ class Score {
     //Convert and format integer to string
     text = "score: " + nf(score, place, 0);
     String text2 = "multiplier x" + multiplier;
-    
+
     //Place string on screen
     pushMatrix();
     translate(5, 5);
@@ -35,8 +35,8 @@ class Score {
   void addScore() {
     score += 10 * multiplier;
   }
-  
-  void increaseMultiplier(){
-    multiplier++; 
+
+  void increaseMultiplier() {
+    multiplier++;
   }
 }

@@ -1,8 +1,8 @@
-class Multiplier extends GameObject implements Entity{
+class Multiplier extends GameObject implements Entity {
   float alive;
   float timeToLive;
   PVector groundPosition;
-  
+
   Multiplier(PVector groundPosition, PVector temp, float size, int timeToLive) {
     super();
     this.id = 3;
@@ -10,15 +10,15 @@ class Multiplier extends GameObject implements Entity{
     this.velocity = new PVector(0, 0);
     this.timeToLive = timeToLive;  
     this.size = size;
-    
+
     this.groundPosition = groundPosition;
   }
 
   void render() {  
     textAlign(CENTER);
     textSize(textSize);
-    fill(204,155,8);
-    text(score.multiplier + 1 + "x" ,pos.x, pos.y);
+    fill(204, 155, 8);
+    text(score.multiplier + 1 + "x", pos.x, pos.y);
   }
 
   void update() {

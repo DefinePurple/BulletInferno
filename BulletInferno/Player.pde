@@ -30,8 +30,8 @@ class Player extends GameObject {
 
   void create() {
     shape = createShape(RECT, -(size/2), -(size/2), size, size);
-    shape.setFill(color(255,238,0));
-    shape.setStroke(color(255,238,0));
+    shape.setFill(color(255, 238, 0));
+    shape.setStroke(color(255, 238, 0));
   }
 
   void render() { // Overrides the method in the base class
@@ -71,7 +71,7 @@ class Player extends GameObject {
   void update() {
     velocity.x = 0;
     float runMultiplier = 1;
-    
+
     if (checkKey(run))
       runMultiplier = 1.5f;
 
@@ -114,8 +114,8 @@ class Player extends GameObject {
       if (checkKey(right))
         velocity.x = 0;
     }
-    
-    if(pos.y - size/2 <= 0)
+
+    if (pos.y - size/2 <= 0)
       pos.y = size/2;
   }
 }

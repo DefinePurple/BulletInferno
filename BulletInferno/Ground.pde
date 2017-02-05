@@ -2,7 +2,7 @@
 class Ground extends GameObject {  
   Ground(float x, float y, float gWidth, float gHeight) {
     id = 0;
-    
+
     x = x - gWidth * 0.5f;
     this.pos = new PVector(x, y);
     this.gWidth = gWidth;
@@ -10,7 +10,7 @@ class Ground extends GameObject {
   }
 
   void render() {
-    fill(32,38,90);
+    fill(32, 38, 90);
     rect(pos.x, pos.y, gWidth, gHeight);
   }
 

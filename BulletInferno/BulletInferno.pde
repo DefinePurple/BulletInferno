@@ -13,12 +13,11 @@ void setup() {
   fill(255);
   noStroke();
   textSize = (width + height) * 0.01f;
-  
+
   //init();//Initialise player object
   splash = new StartSplash();
   splashFont = loadFont("Arcade-100.vlw");
   gameFont = loadFont("namco_regular-100.vlw");
-  
 }
 
 
@@ -102,14 +101,14 @@ void draw() {
 void keyPressed() {
   if (screen == GAME) 
     keys[keyCode] = true;
-  else if(screen == SPLASH && keyCode == ENTER)
+  else if (screen == SPLASH && keyCode == ENTER)
     keyBool = true;
 }
 
 //Looks for key releases
 void keyReleased() {
   if (screen == GAME)
-    keys[keyCode] = false;   
+    keys[keyCode] = false;
 }
 
 //Used to check if a key is being pressed
