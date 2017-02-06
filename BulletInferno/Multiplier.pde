@@ -1,7 +1,5 @@
 class Multiplier extends GameObject implements Entity {
   float alive;
-  float timeToLive;
-  PVector groundPosition;
 
   Multiplier(PVector groundPosition, PVector temp, float size, int timeToLive) {
     super();

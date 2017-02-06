@@ -1,13 +1,12 @@
 class Player extends GameObject {
   float radius;
-  PVector groundPosition;
   PShape shape;
   char up, left, right, run;
-
   PVector force;
   float power;
   float jumpPower;
-
+  boolean shield;
+  
   Player(float x, float y, float size, char up, char left, char right, char run, PVector groundPosition) {
     super();
     this.id = 1;
@@ -25,7 +24,7 @@ class Player extends GameObject {
 
     this.groundPosition = groundPosition;
     this.power = (width + height) * 0.3f;
-    this.jumpPower = size * 22;
+    this.jumpPower = size * 25;
   }
 
   void create() {
@@ -89,7 +88,7 @@ class Player extends GameObject {
 
     pos.add(PVector.mult(velocity, timeDelta));
 
-    if (centerCollision(pos, size, BULLET))
+    if (centerCollision(pos, size, BULLET) && !shield)
       this.dead = true;
   }
 

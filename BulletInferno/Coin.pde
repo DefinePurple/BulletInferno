@@ -1,7 +1,5 @@
 class Coin extends GameObject implements Entity {
   float alive;
-  float timeToLive;
-  PVector groundPosition;
   PShape shape;
 
   Coin(PVector groundPosition, PVector temp, float size, int timeToLive) {

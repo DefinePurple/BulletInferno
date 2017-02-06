@@ -6,10 +6,12 @@ class GameObject {
 
   float size;
   float gravity;
-
+  float timeToLive;
+  
   boolean dead;
-
+  
   //Ground attributes
+  PVector groundPosition;
   float gWidth;
   float gHeight;
 

@@ -28,11 +28,15 @@ class Timer {
     if (previous != second()) {
       PVector temp = new PVector(random(10, width-10), -20);
 
-      if ((int)random(0, 1000) % 9 == 0) {
+      int rand = (int) random(0, 500) % 32;
+
+      if (rand == 0) {
         Multiplier multi = new Multiplier(ground.pos, temp, textSize, 7);
         gameObjects.add(multi);
+      } else if (rand == 1 || rand == 2) {
+        PowerUp powerUp = new PowerUp(ground.pos, temp);
+        gameObjects.add(powerUp);
       } else {
-
         Coin coin = new Coin(ground.pos, temp, (width+height) * 0.01f, 7);
         gameObjects.add(coin);
       }

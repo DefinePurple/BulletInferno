@@ -3,6 +3,7 @@ int PLAYER = 1;
 int BULLET = 2;
 int COIN = 3;
 int GUN = 4;
+int POWERUP = 5;
 
 int SPLASH = 0;
 int GAME = 1;
