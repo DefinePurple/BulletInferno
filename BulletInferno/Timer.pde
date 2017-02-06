@@ -26,20 +26,26 @@ class Timer {
   void update() {
     //If the current second is different to what it was last time, create a coin aswell as implement second
     if (previous != second()) {
-      PVector temp = new PVector(random(10, width-10), -20);
+      PVector temp;
 
-      int rand = (int) random(0, 500) % 32;
+      int rand = (int) random(0, 500);
+      /*if ((rand >= 0) && (rand < 10)) {
+       temp = new PVector(random(10, width-10), -20);
+       Multiplier multi = new Multiplier(ground.pos, temp, textSize, 7);
+       gameObjects.add(multi);
+       }
+       if ((rand >= 10) && (rand < 20)) {
+       PVector temp = new PVector(random(10, width-10), -20);
+       PowerUp powerUp = new PowerUp(ground.pos, temp, (width + height) * 0.01f, 7);
+       gameObjects.add(powerUp);
+       }*/
 
-      if (rand == 0) {
-        Multiplier multi = new Multiplier(ground.pos, temp, textSize, 7);
-        gameObjects.add(multi);
-      } else if (rand == 1 || rand == 2) {
-        PowerUp powerUp = new PowerUp(ground.pos, temp);
-        gameObjects.add(powerUp);
-      } else {
-        Coin coin = new Coin(ground.pos, temp, (width+height) * 0.01f, 7);
-        gameObjects.add(coin);
-      }
+      temp = new PVector(random(10, width-10), -20);
+      PowerUp powerUp = new PowerUp(ground.pos, temp, (width + height) * 0.01f, 7);
+      gameObjects.add(powerUp);
+      temp = new PVector(random(10, width-10), -20);
+      Coin coin = new Coin(ground.pos, temp, (width+height) * 0.01f, 7);
+      gameObjects.add(coin);
       seconds++;
     }
 

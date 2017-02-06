@@ -6,7 +6,8 @@ class Player extends GameObject {
   float power;
   float jumpPower;
   boolean shield;
-  
+  float shieldTime;
+
   Player(float x, float y, float size, char up, char left, char right, char run, PVector groundPosition) {
     super();
     this.id = 1;
@@ -15,7 +16,7 @@ class Player extends GameObject {
     this.force = new PVector(0, 0);
     this.size = size;
     this.radius = size / 2;
-
+    this.timeToLive = 7;
     this.left = left;
     this.right = right;
     this.up = up;
@@ -37,7 +38,12 @@ class Player extends GameObject {
     pushMatrix(); // Stores the current transform
     translate(pos.x, pos.y);
     shape(shape, 0, 0);
+    if(shield){
+      fill(color(255, 238, 0), 100);
+      ellipse(0,0, size*2,size*2);
+    }
     popMatrix(); // Restore the transform
+    
     //info();
   }
 
@@ -88,8 +94,16 @@ class Player extends GameObject {
 
     pos.add(PVector.mult(velocity, timeDelta));
 
+    if (centerCollision(pos, size, POWERUP))
+      shield = true;
+
     if (centerCollision(pos, size, BULLET) && !shield)
       this.dead = true;
+
+    if (shield)
+      shieldTime += timeDelta;
+      if (shieldTime > timeToLive)
+        shield = false;
   }
 
   void gravity() {
