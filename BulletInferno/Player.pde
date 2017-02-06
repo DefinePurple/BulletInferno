@@ -102,8 +102,10 @@ class Player extends GameObject {
 
     if (shield)
       shieldTime += timeDelta;
-      if (shieldTime > timeToLive)
+      if (shieldTime > timeToLive){
         shield = false;
+        shieldTime = 0; 
+      }
   }
 
   void gravity() {
