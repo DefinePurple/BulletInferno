@@ -16,4 +16,4 @@ Jump/Fly - W<br>
 Run - Spacebar<br>
 
    
-[![YouTube](https://i.gyazo.com/77a61181625052cbe11c289085ecc00d.png)](https://www.youtube.com/watch?v=L1O_fdVjeUw&feature=youtu.be)
+[![YouTube](https://i.gyazo.com/cb500b51ddeac204c45050cba99cc45f.png)](https://www.youtube.com/watch?v=L1O_fdVjeUw&feature=youtu.be)
