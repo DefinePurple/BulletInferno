@@ -1,6 +1,6 @@
 class Bullet extends GameObject {
   float theta;
-  float speed;
+  float power;
   float timeToLive;
   float alive;
   float bulletSize;
@@ -8,7 +8,7 @@ class Bullet extends GameObject {
 
   color colour;
 
-  Bullet(float x, float y, float theta, float size, float timeToLive, float speed, color colour) {
+  Bullet(float x, float y, float theta, float size, float timeToLive, float power, color colour) {
     this.id = 2;
     this.pos = new PVector(x, y);
     this.forward = new PVector(0, 1);
@@ -17,7 +17,7 @@ class Bullet extends GameObject {
     this.timeToLive = timeToLive;    
     this.alive = 0;
     this.size = bulletSize * 2;
-    this.speed = speed;
+    this.power = power;
     this.colour = colour;
     create();
   }
@@ -50,8 +50,8 @@ class Bullet extends GameObject {
     forward.x = sin(theta);
     forward.y = - cos(theta);
 
-    //Moves the bullet by its speed and in the direction of forward
-    pos.add(PVector.mult(PVector.mult(forward, speed), timeDelta));
+    //Moves the bullet by its power and in the direction of forward
+    pos.add(PVector.mult(PVector.mult(forward, power), timeDelta));
     //If the bullet goes offscreen, Kill it.
 
     sideCollision();
@@ -62,6 +62,7 @@ class Bullet extends GameObject {
       this.dead = true;
   }
 
+  //Checks if the player has collided with the sides of the screen
   void sideCollision() {
     if ((pos.x > width) || (pos.y > height) || (pos.y < 0) || pos.x < 0)
       this.dead = true;

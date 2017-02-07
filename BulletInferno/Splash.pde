@@ -23,6 +23,7 @@ class Splash {
   }
 
   void update() {
+    //if the key is pressed, start the game
     if (keyBool == true) {
       screen = GAME;
       init();

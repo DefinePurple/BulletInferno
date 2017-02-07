@@ -1,16 +1,16 @@
 class GameObject {
-  int id;
-  PVector pos;
-  PVector forward;
-  PVector velocity;
+  int id; //used to determine, for example, if a bullet is a bullet
+  PVector pos; //position of the object
+  PVector forward; //forward vector
+  PVector velocity; //velocity of object
 
-  float size;
-  float gravity;
-  float timeToLive;
-  
+  float size;//size of the object
+  float gravity;//gravity
+  float timeToLive;//how long the object can live for
+
   boolean dead;
-  
-  //Ground attributes
+
+  //Ground attributes -- Some objects need to know where the ground is
   PVector groundPosition;
   float gWidth;
   float gHeight;

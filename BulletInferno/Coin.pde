@@ -14,6 +14,7 @@ class Coin extends GameObject implements Entity {
     create();
   }
 
+  //Creates the body of the bullet
   void create() {
     shape = createShape(GROUP);
     PShape body = createShape(ELLIPSE, 0, 0, size, size);
@@ -25,6 +26,7 @@ class Coin extends GameObject implements Entity {
     inner.setStroke(true);
     inner.setStroke(color(120, 51, 40));
 
+    //Adds shapes to the 'shape' shape
     shape.addChild(body);
     shape.addChild(inner);
   }
@@ -39,18 +41,22 @@ class Coin extends GameObject implements Entity {
   void update() {
     gravity();
 
+    //Adds the velocity to the position of the coin
     pos.add(PVector.mult(velocity, timeDelta));  
 
+    //increases the alive counter by the timeDelta
     alive += timeDelta;
-    if (alive > timeToLive)
+    if (alive > timeToLive) //If its time is up, kill it
       this.dead = true;
 
+    //Checks if it collided with the player
     if (centerCollision(pos, size, PLAYER)) {
-      score.addScore();
+      score.addScore(); //Adds to the score
       this.dead = true;
     }
   }
 
+  //If the player isn't touching the ground, apply gravity
   void gravity() {
     if (!edgeCollision(pos, size)) {
       velocity.y += gravity;

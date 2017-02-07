@@ -1,3 +1,15 @@
+/*  Daniel Fitzpatrick  
+ *   C15345046
+ *   DT228 - 2 Group B
+ *
+ *   Controls:
+ *    Left - A
+ *    Right - D
+ *    Jump/Fly - W
+ *    Run - Spacebar
+ */
+
+//Used as a sort of enumerator or #define from C 
 int GROUND = 0;
 int PLAYER = 1;
 int BULLET = 2;
@@ -9,27 +21,25 @@ int SPLASH = 0;
 int GAME = 1;
 
 void setup() {
-  //fullScreen();
-  size(600, 600);
+  noCursor();
+  fullScreen();
+  //size(600, 600);
   fill(255);
   noStroke();
   textSize = (width + height) * 0.01f;
 
-  //init();//Initialise player object
   splash = new StartSplash();
+  //Loads fonts for use
   splashFont = loadFont("Arcade-100.vlw");
   gameFont = loadFont("namco_regular-100.vlw");
 }
 
 
-//initialise the player object
-//checks the list of objects if there is already a player
-//if there is no other player, create a new one
+//initialise the game objects
 void init() {
   timer = new Timer();
   score = new Score();
   gameObjects = new ArrayList<GameObject>();
-
 
   ground = new Ground(width * 0.5f, height * 0.99f, width * 1.2f, height * 0.05f);
   gameObjects.add(ground);
@@ -54,14 +64,13 @@ boolean keyBool;
 float timeDelta = 1.0f / 60.0f;
 float textSize;
 color colour;
-color bgColour;
 int screen = SPLASH;
 PFont splashFont, gameFont;
 
 void draw() {
-  bgColour = 0;
+  background(0);
+  //Checks which screen to go to
   if (screen == GAME && checkPlayer()) {
-    background(bgColour); 
     textSize(textSize);
     textFont(gameFont);
 
@@ -71,28 +80,34 @@ void draw() {
       go.update();
       go.render();
     }
-
+    //Checks each game object to see if it is dead or not
     for (int i = 0; i < gameObjects.size(); i++) {
       GameObject go = gameObjects.get(i);
       go.doDeath();
     }
 
+    //Non gameobject objects
     timer.render();
     timer.update();
     score.render();
+    //Determines colour of bullets
     bulletColour();
   } else if (screen == SPLASH) {
     textFont(splashFont);
-    background(bgColour); 
     splash.render();
     splash.update();
   } else {
+    //This else will happen when the player dies
+
+    //Removes all objects from the list
     for (int i = 0; i < gameObjects.size(); i++) {
       gameObjects.remove(i);
     }
+    //Sets all keys to be false
     for (int i = 0; i < keys.length; i++) {
       keys[i] = false;
     }
+    //Sets screen to the splash screen 
     screen = SPLASH;
     splash = new DeathSplash(score.text, timer.time);
   }
@@ -149,12 +164,15 @@ boolean centerCollision(PVector pos, float size, int id) {
   return false;
 }
 
+//Sets the colour of the bullets in accordance with time
 void bulletColour() {
   float c = abs(sin(millis() / 5000.0f) * 255);
   float c2 = abs(cos(millis() / 5000.0f) * 255);
   colour = color(c2, c, 0);
 }
 
+//checks the list of objects if there is already a player
+//if there is no other player, create a new one
 boolean checkPlayer() {
   for (int i = gameObjects.size() -1; i >= 0; i --) {
     GameObject go = gameObjects.get(i); 

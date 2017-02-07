@@ -8,7 +8,7 @@ class Score {
     this.place = 1;
     this.mod = 10;
   }
-
+  
   void render() {
     fill(255);
     textAlign(LEFT, TOP);

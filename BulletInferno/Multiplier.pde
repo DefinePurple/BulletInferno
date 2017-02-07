@@ -22,18 +22,22 @@ class Multiplier extends GameObject implements Entity {
   void update() {
     gravity();
 
+    //Adds the velocity to the position of the multiplier
     pos.add(PVector.mult(velocity, timeDelta));  
 
+    //increases the alive counter by the timeDelta
     alive += timeDelta;
-    if (alive > timeToLive)
+    if (alive > timeToLive)//If its time is up, kill it
       this.dead = true;
 
+    //Checks if it collided with the player
     if (centerCollision(pos, size, PLAYER)) {
       score.increaseMultiplier();
       this.dead = true;
     }
   }
 
+  //If the player isn't touching the ground, apply gravity
   void gravity() {
     if (!edgeCollision(pos, size)) {
       velocity.y += gravity;

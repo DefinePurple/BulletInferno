@@ -9,14 +9,19 @@ class Player extends GameObject {
   float shieldTime;
 
   Player(float x, float y, float size, char up, char left, char right, char run, PVector groundPosition) {
-    super();
+    super();//Gets the parents constructors
     this.id = 1;
     this.pos = new PVector(x, y);
     this.velocity = new PVector(0, 0);
     this.force = new PVector(0, 0);
+
+    //sizes for determining player size
     this.size = size;
     this.radius = size / 2;
-    this.timeToLive = 7;
+
+    this.timeToLive = 7;//How long the shield will live
+
+    //Controls
     this.left = left;
     this.right = right;
     this.up = up;
@@ -38,76 +43,55 @@ class Player extends GameObject {
     pushMatrix(); // Stores the current transform
     translate(pos.x, pos.y);
     shape(shape, 0, 0);
-    if(shield){
+    if (shield) {
       fill(color(255, 238, 0), 100);
-      ellipse(0,0, size*2,size*2);
+      ellipse(0, 0, size*2, size*2);
     }
     popMatrix(); // Restore the transform
-    
-    //info();
-  }
-
-  void info() {
-    textSize(12);
-    textAlign(LEFT, BOTTOM);
-    pushMatrix();
-    translate(5, 40);
-    text("X: " + pos.x + "     Y: " + pos.y, 0, 12);
-    text("Vertical: " + velocity.y, 0, 32);
-    text("Horizontl: " + velocity.x, 0, 52);
-
-    if (checkKey(left))
-      text("Left: true", 0, 72);
-    else text("Left: false", 0, 72);
-
-    if (checkKey(right))
-      text("Right: true", 0, 92);
-    else text("Right:  false", 0, 92);
-
-    if (checkKey(up))
-      text("Jump: true", 0, 112);
-    else text("Jump:  false", 0, 112);
-
-    text("Time delta: " + timeDelta, 0, 132);
-    textSize(20);
-    popMatrix();
   }
 
   void update() {
-    velocity.x = 0;
-    float runMultiplier = 1;
+    velocity.x = 0;//set horizontal velocity to 0
+    float runMultiplier = 1; //run multiplier is used to determine run speed
 
-    if (checkKey(run))
+    if (checkKey(run))//if running, run
       runMultiplier = 1.5f;
 
-    if (checkKey(left))
+    if (checkKey(left))//if moving left, set horizontal velocity to power and if you're running increase power
       velocity.x = -power * runMultiplier;
 
-    if (checkKey(right))
+    if (checkKey(right))//if moving right, set horizontal velocity to power and if you're running increase power
       velocity.x = power * runMultiplier;
 
     gravity();
     sideCollision();
 
+    //Checks if the player can jump. Jump cuts off at a certain height
     if (checkKey(up) && pos.y - height * 0.1f > 0)
       velocity.y = -jumpPower;
 
     pos.add(PVector.mult(velocity, timeDelta));
 
-    if (centerCollision(pos, size, POWERUP))
+    //Checks if the player picked up a shield
+    if (centerCollision(pos, size, POWERUP)) {
       shield = true;
+      shieldTime = 0;
+    }
 
+    //If the player collides with a bullet he dies but not if he's shielded
     if (centerCollision(pos, size, BULLET) && !shield)
       this.dead = true;
 
+    //Start timer for shield to determine when it dies
     if (shield)
       shieldTime += timeDelta;
-      if (shieldTime > timeToLive){
-        shield = false;
-        shieldTime = 0; 
-      }
+    if (shieldTime > timeToLive) {
+      shield = false;
+      shieldTime = 0;
+    }
   }
 
+  //Applies gravity to the player
   void gravity() {
     if (!edgeCollision(pos, size)) {
       velocity.y += gravity;
@@ -117,6 +101,8 @@ class Player extends GameObject {
     }
   }
 
+
+  //Checks if the player is against a wall
   void sideCollision() {
     if (pos.x - size/2 <= 0) {
       pos.x = size/2;
