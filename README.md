@@ -1,6 +1,6 @@
 # BulletInferno
 
-I decided to make a game based off of one of my favourite game genres, bullet hell, and give it a twist. The typical bullet hell would be a game similar to Ikaruga (propbably the most famous bullet hell). Ikaruga is game game where you're flying a ship, you always fire forward and the enemies fly in from the top. Typical bullet hells follow this pattern. I decided to do a bullet hell in which the play is usually on the ground going left and right on the screen. The player can jump, collect coins/powerups/multipliers and die. 
+I decided to make a game based off of one of my favourite game genres, bullet hell, and give it a twist. The typical bullet hell would be a game similar to Ikaruga (propbably the most famous bullet hell). Ikaruga is a game where you're flying a ship, you always fire forward and the enemies fly in from the top. Typical bullet hells follow this pattern. I decided to do a bullet hell in which the play is usually on the ground going left and right on the screen. The player can jump, collect coins/powerups/multipliers and die. 
 
 <br>
 <h2>Implemented</h2> 
